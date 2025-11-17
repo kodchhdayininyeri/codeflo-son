@@ -2,51 +2,17 @@
 
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import { useEffect } from 'react'
 import WebGLErrorBoundary from './WebGLErrorBoundary'
 
-// Logging utility
-const HERO_LOG = '[Hero]'
-const heroLog = {
-  info: (...args: unknown[]) => console.log(`${HERO_LOG} ℹ️`, ...args),
-  success: (...args: unknown[]) => console.log(`${HERO_LOG} ✅`, ...args),
-  warn: (...args: unknown[]) => console.warn(`${HERO_LOG} ⚠️`, ...args),
-}
-
-// Lazy load WebGL - büyük bundle'ı initial load'dan ayır
-console.log(`${HERO_LOG} 📦 Registering dynamic import for WebGLBackground...`)
 const WebGLBackground = dynamic(
-  () => {
-    heroLog.info('⬇️  Starting WebGL bundle download...')
-    const startTime = performance.now()
-    return import('./WebGLBackground').then((mod) => {
-      const loadTime = performance.now() - startTime
-      heroLog.success(`WebGL bundle loaded in ${loadTime.toFixed(2)}ms`)
-      return mod
-    })
-  },
+  () => import('./WebGLBackground'),
   {
-    ssr: false, // Server-side rendering'i devre dışı bırak (WebGL browser-only)
-    loading: () => {
-      heroLog.info('⏳ WebGL loading... (showing fallback)')
-      return <div className="absolute inset-0 bg-black" />
-    }
+    ssr: false,
+    loading: () => <div className="absolute inset-0 bg-black" />
   }
 )
 
 export default function Hero() {
-  useEffect(() => {
-    heroLog.info('═══════════════════════════════════════════════')
-    heroLog.info('🦸 Hero component mounted')
-    heroLog.info('═══════════════════════════════════════════════')
-
-    const startTime = performance.now()
-
-    return () => {
-      const duration = performance.now() - startTime
-      heroLog.info(`🔴 Hero unmounted (lived for ${(duration / 1000).toFixed(2)}s)`)
-    }
-  }, [])
   return (
     <div className="flex flex-col h-svh pt-20 relative">
       {/* WebGL Background */}
@@ -62,12 +28,28 @@ export default function Hero() {
       <div className="flex-1 flex items-start justify-center px-4 sm:px-8 pt-20 sm:pt-28">
         <div className="text-center relative z-10 w-full flex flex-col items-center">
           <h1
-            className="text-4xl sm:text-6xl md:text-7xl font-sentient drop-shadow-2xl text-shadow-lg text-center"
+            className="text-4xl sm:text-6xl md:text-7xl font-sentient text-center font-bold drop-shadow-2xl"
+            style={{
+              color: '#FFFFFF',
+              fontWeight: 700,
+              letterSpacing: '-0.02em',
+              lineHeight: '1.1',
+              textShadow: '0 10px 30px rgba(0, 0, 0, 0.5), 0 5px 15px rgba(0, 0, 0, 0.3)'
+            }}
           >
             Automate Today to Power the Future
           </h1>
 
-          <p className="font-mono text-sm sm:text-base text-muted-foreground text-balance mt-4 sm:mt-6 max-w-[700px] mx-auto">
+          <p
+            className="font-mono text-sm sm:text-base text-center text-balance mt-4 sm:mt-6 max-w-[700px] mx-auto"
+            style={{
+              color: '#ffffff',
+              fontWeight: 400,
+              letterSpacing: '-0.01em',
+              lineHeight: '1.6',
+              textShadow: '0 2px 12px rgba(0, 0, 0, 0.3)'
+            }}
+          >
             Boost productivity and revenue with AI-driven automation tailored for your business.
           </p>
 

@@ -7,16 +7,6 @@ import { EffectComposer } from '@react-three/postprocessing'
 import { Effect } from 'postprocessing'
 import * as THREE from 'three'
 
-// Debug logging utility
-const LOG_PREFIX = '[WebGL-CodeFlo]'
-const log = {
-  info: (...args: unknown[]) => console.log(`${LOG_PREFIX} ℹ️`, ...args),
-  success: (...args: unknown[]) => console.log(`${LOG_PREFIX} ✅`, ...args),
-  warn: (...args: unknown[]) => console.warn(`${LOG_PREFIX} ⚠️`, ...args),
-  error: (...args: unknown[]) => console.error(`${LOG_PREFIX} ❌`, ...args),
-  perf: (...args: unknown[]) => console.log(`${LOG_PREFIX} ⚡`, ...args),
-}
-
 // Periodic noise function - EXACT from original
 const periodicNoiseFunction = `
   // Periodic noise function using sine and cosine waves
@@ -44,13 +34,8 @@ const periodicNoiseFunction = `
 // Simulation Material - EXACT from original
 class SimulationMaterial extends THREE.ShaderMaterial {
   constructor(planeScale = 10) {
-    log.info('Creating SimulationMaterial...')
     const size = 512
-    const particleCount = size * size
-    log.info(`Particle grid size: ${size}x${size} = ${particleCount.toLocaleString()} particles`)
-
     const data = new Float32Array(size * size * 4)
-    log.info(`Float32Array size: ${(data.byteLength / 1024).toFixed(2)} KB`)
 
     for (let i = 0; i < size * size; i++) {
       const x = (i % size) / (size - 1)
@@ -71,7 +56,6 @@ class SimulationMaterial extends THREE.ShaderMaterial {
     positionsTexture.minFilter = THREE.NearestFilter
     positionsTexture.magFilter = THREE.NearestFilter
     positionsTexture.needsUpdate = true
-    log.success(`Position texture created: ${size}x${size} RGBA Float with NearestFilter`)
 
     super({
       vertexShader: `
@@ -109,9 +93,8 @@ class SimulationMaterial extends THREE.ShaderMaterial {
           float displacementY = periodicNoise(noiseInput + vec3(50.0, 0.0, 0.0), continuousTime + 2.094); // +120°
           float displacementZ = periodicNoise(noiseInput + vec3(0.0, 50.0, 0.0), continuousTime + 4.188); // +240°
 
-          // Apply distortion to original position with damping
+          // Apply distortion to original position
           vec3 distortion = vec3(displacementX, displacementY, displacementZ) * uNoiseIntensity;
-          distortion *= 0.75; // Velocity damping - prevents unbounded acceleration (5-10% perf gain)
           vec3 finalPos = originalPos + distortion;
 
           gl_FragColor = vec4(finalPos, 1.0);
@@ -132,7 +115,6 @@ class SimulationMaterial extends THREE.ShaderMaterial {
 // Particles Material - EXACT from original
 class ParticlesMaterial extends THREE.ShaderMaterial {
   constructor() {
-    log.info('Creating ParticlesMaterial...')
     super({
       vertexShader: `
         precision mediump float; // Lower precision for 10-15% mobile performance gain
@@ -289,50 +271,7 @@ function ParticleSystem() {
   const simulationMaterialRef = useRef<SimulationMaterial>()
   const particlesMaterialRef = useRef<ParticlesMaterial>()
   const startTimeRef = useRef<number | null>(null)
-  const frameCountRef = useRef(0)
-  const lastFPSCheckRef = useRef(0)
-  const revealLoggedRef = useRef({
-    started: false,
-    at25: false,
-    at50: false,
-    at75: false,
-    completed: false
-  })
-  const totalFramesRef = useRef(0)
-  const slowFramesRef = useRef(0)
-  const criticalFramesRef = useRef(0)
   const fboFrameSkipRef = useRef(0) // FBO throttle counter
-  const lastFrameTimeRef = useRef<number>(0) // GERÇEK frame time için (Chrome'un ölçtüğü)
-
-  // Component lifecycle logging
-  useEffect(() => {
-    log.info('🚀 ParticleSystem component mounted')
-    log.info('⚡ OPTIMIZATIONS ACTIVE:')
-    log.info('  - Particle count: 512×512 = 262,144 particles')
-    log.info('  - Point size: 3.0 (original size)')
-    log.info('  - Velocity damping: Bounded acceleration → ~5-10% saved')
-    log.info('  - Shader precision: mediump → ~10-15% saved (mobile)')
-    log.info('  - NearestFilter: No texture interpolation → ~5-10% saved')
-    log.info('  - DPR capped at 1.0: Less pixel overhead → ~15-20% saved')
-    log.info('  - FBO throttle: Every 2 frames → ~30-35% saved')
-    log.info('  Expected TOTAL performance gain: ~65-85%! 🚀')
-    const startTime = performance.now()
-
-    return () => {
-      const duration = performance.now() - startTime
-      log.info('═══════════════════════════════════════════════')
-      log.info('📊 PERFORMANCE SUMMARY')
-      log.info('═══════════════════════════════════════════════')
-      log.info(`⏱️  Total runtime: ${(duration / 1000).toFixed(2)}s`)
-      log.info(`🎬 Total frames rendered: ${totalFramesRef.current}`)
-      log.info(`⚠️  Slow frames (>16.67ms): ${slowFramesRef.current} (${((slowFramesRef.current / totalFramesRef.current) * 100).toFixed(1)}%)`)
-      log.info(`❌ Critical frames (>33.33ms): ${criticalFramesRef.current} (${((criticalFramesRef.current / totalFramesRef.current) * 100).toFixed(1)}%)`)
-      log.info(`✅ Good frames: ${totalFramesRef.current - slowFramesRef.current} (${(((totalFramesRef.current - slowFramesRef.current) / totalFramesRef.current) * 100).toFixed(1)}%)`)
-      log.info(`📈 Average FPS: ${(totalFramesRef.current / (duration / 1000)).toFixed(1)}`)
-      log.info('═══════════════════════════════════════════════')
-      log.info(`🔴 ParticleSystem component unmounted`)
-    }
-  }, [])
 
   // FBO for GPU simulation
   const fbo = useFBO(size, size, {
@@ -342,34 +281,18 @@ function ParticleSystem() {
     type: THREE.FloatType
   })
 
-  useEffect(() => {
-    log.success(`FBO created: ${fbo.width}x${fbo.height}`)
-  }, [fbo])
-
   // Simulation quad
-  const simulationMaterial = useMemo(() => {
-    log.info('useMemo: Creating SimulationMaterial instance')
-    const mat = new SimulationMaterial(10)
-    log.success('SimulationMaterial instance created')
-    return mat
-  }, [])
+  const simulationMaterial = useMemo(() => new SimulationMaterial(10), [])
 
-  const particlesMaterial = useMemo(() => {
-    log.info('useMemo: Creating ParticlesMaterial instance')
-    const mat = new ParticlesMaterial()
-    log.success('ParticlesMaterial instance created')
-    return mat
-  }, [])
+  const particlesMaterial = useMemo(() => new ParticlesMaterial(), [])
 
   simulationMaterialRef.current = simulationMaterial
   particlesMaterialRef.current = particlesMaterial
 
   // Particle positions
   const positions = useMemo(() => {
-    log.info('useMemo: Generating particle positions...')
     const count = size * size
     const pos = new Float32Array(count * 3)
-    log.info(`Position buffer: ${count.toLocaleString()} particles × 3 = ${(pos.byteLength / 1024).toFixed(2)} KB`)
 
     for (let i = 0; i < count; i++) {
       pos[i * 3 + 0] = (i % size) / size
@@ -377,81 +300,33 @@ function ParticleSystem() {
       pos[i * 3 + 2] = 0
     }
 
-    log.success('Particle positions generated')
     return pos
   }, [size])
 
   // Orthographic camera for simulation
-  const simScene = useMemo(() => {
-    log.info('Creating simulation scene')
-    return new THREE.Scene()
-  }, [])
+  const simScene = useMemo(() => new THREE.Scene(), [])
 
-  const simCamera = useMemo(() => {
-    log.info('Creating orthographic camera for simulation')
-    return new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / 0x20000000000000, 1)
-  }, [])
+  const simCamera = useMemo(() => new THREE.OrthographicCamera(-1, 1, 1, -1, 1 / 0x20000000000000, 1), [])
 
   const simQuad = useMemo(() => {
-    log.info('Creating simulation quad geometry')
     const geo = new THREE.BufferGeometry()
     const vertices = new Float32Array([-1, -1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0])
     const uvs = new Float32Array([0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0])
     geo.setAttribute('position', new THREE.BufferAttribute(vertices, 3))
     geo.setAttribute('uv', new THREE.BufferAttribute(uvs, 2))
-    log.success('Simulation quad created')
     return new THREE.Mesh(geo, simulationMaterial)
   }, [simulationMaterial])
 
   useEffect(() => {
     simScene.add(simQuad)
-    log.success('Simulation quad added to scene')
   }, [simScene, simQuad])
 
   useFrame((state) => {
     const { gl, clock } = state
-    const frameStartTime = performance.now()
-
-    // ═══════════════════════════════════════════════════════════════
-    // GERÇEK FRAME TIME - Chrome'un Ölçtüğü (frame-to-frame delta)
-    // ═══════════════════════════════════════════════════════════════
-    const realFrameTime = lastFrameTimeRef.current === 0 ? 0 : frameStartTime - lastFrameTimeRef.current
-    lastFrameTimeRef.current = frameStartTime
-
-    // Detailed frame timing
-    let jsStartTime = 0
-    let jsEndTime = 0
-    let webglStartTime = 0
-    let webglEndTime = 0
 
     // Initialize start time
     if (startTimeRef.current === null) {
       startTimeRef.current = clock.elapsedTime
-      log.info('🎬 Animation started!')
-    }
-
-    // JavaScript execution timing başladı
-    jsStartTime = performance.now()
-
-    // FPS monitoring (every second)
-    frameCountRef.current++
-    const currentTime = clock.elapsedTime
-    if (currentTime - lastFPSCheckRef.current >= 1.0) {
-      const fps = frameCountRef.current / (currentTime - lastFPSCheckRef.current)
-
-      // FPS analysis
-      if (fps < 30) {
-        log.error(`FPS: ${fps.toFixed(1)} ❌ CRITICAL LAG | Frame: ${frameCountRef.current} | Time: ${currentTime.toFixed(2)}s`)
-      } else if (fps < 45) {
-        log.warn(`FPS: ${fps.toFixed(1)} ⚠️  LOW | Frame: ${frameCountRef.current} | Time: ${currentTime.toFixed(2)}s`)
-      } else if (fps > 90) {
-        log.info(`FPS: ${fps.toFixed(1)} 🚀 HIGH (tab inactive?) | Frame: ${frameCountRef.current} | Time: ${currentTime.toFixed(2)}s`)
-      } else {
-        log.perf(`FPS: ${fps.toFixed(1)} ✅ GOOD | Frame: ${frameCountRef.current} | Time: ${currentTime.toFixed(2)}s`)
-      }
-
-      frameCountRef.current = 0
-      lastFPSCheckRef.current = currentTime
     }
 
     // Calculate reveal animation (3.5 seconds duration)
@@ -460,50 +335,22 @@ function ParticleSystem() {
     const rawProgress = Math.min(timeSinceStart / revealDuration, 1)
     const revealProgress = 1 - Math.pow(1 - rawProgress, 3) // Ease out cubic
 
-    // Log reveal progress milestones (sadece bir kere)
-    if (rawProgress === 0 && !revealLoggedRef.current.started) {
-      log.info('🎭 Reveal animation: 0% (starting)')
-      revealLoggedRef.current.started = true
-    } else if (rawProgress >= 0.25 && !revealLoggedRef.current.at25) {
-      log.info('🎭 Reveal animation: 25%')
-      revealLoggedRef.current.at25 = true
-    } else if (rawProgress >= 0.5 && !revealLoggedRef.current.at50) {
-      log.info('🎭 Reveal animation: 50%')
-      revealLoggedRef.current.at50 = true
-    } else if (rawProgress >= 0.75 && !revealLoggedRef.current.at75) {
-      log.info('🎭 Reveal animation: 75%')
-      revealLoggedRef.current.at75 = true
-    } else if (rawProgress >= 1.0 && !revealLoggedRef.current.completed) {
-      log.success('🎭 Reveal animation: 100% (complete!)')
-      revealLoggedRef.current.completed = true
-    }
-
     // Update simulation - EXACT parameters from original
     simulationMaterial.uniforms.uTime.value = clock.elapsedTime
     simulationMaterial.uniforms.uNoiseScale.value = 0.6
     simulationMaterial.uniforms.uNoiseIntensity.value = 0.52
     simulationMaterial.uniforms.uTimeScale.value = 1.0
 
-    // JavaScript hesaplamaları bitti
-    jsEndTime = performance.now()
-
-    // ═══════════════════════════════════════════════════════════════
     // FBO THROTTLE: Her 2 frame'de bir render (50% FBO cost save!)
-    // ═══════════════════════════════════════════════════════════════
     fboFrameSkipRef.current++
 
-    webglStartTime = performance.now()
-
     if (fboFrameSkipRef.current >= 2) {
-      // Her 2 frame'de bir FBO render
       fboFrameSkipRef.current = 0
-
       gl.setRenderTarget(fbo)
       gl.clear()
       gl.render(simScene, simCamera)
       gl.setRenderTarget(null)
     }
-    // ═══════════════════════════════════════════════════════════════
 
     // Update particles material
     particlesMaterial.uniforms.positions.value = fbo.texture
@@ -511,45 +358,6 @@ function ParticleSystem() {
     particlesMaterial.uniforms.uTime.value = clock.elapsedTime
     particlesMaterial.uniforms.uRevealFactor.value = 4 * revealProgress
     particlesMaterial.uniforms.uRevealProgress.value = revealProgress
-
-    webglEndTime = performance.now()
-
-    // Frame timing - DETAYLI BREAKDOWN!
-    const frameTime = performance.now() - frameStartTime
-    totalFramesRef.current++
-
-    // Detaylı timing hesaplamaları
-    const jsTime = jsEndTime - jsStartTime
-    const webglTime = webglEndTime - webglStartTime
-
-    // ═══════════════════════════════════════════════════════════════
-    // GERÇEK FRAME TIME LOGGING (Chrome DevTools'un ölçtüğü)
-    // ═══════════════════════════════════════════════════════════════
-    // LOG HER FRAME (ilk 100 frame için)
-    if (totalFramesRef.current <= 100) {
-      // GERÇEK frame time kullan (bir önceki frame'den bu frame'e kadar geçen süre)
-      // Bu TAM OLARAK Chrome'un ölçtüğü şey!
-      if (realFrameTime > 33.33) {
-        criticalFramesRef.current++
-        slowFramesRef.current++
-        log.error(`🔴 #${totalFramesRef.current} KIRMIZI (CHROME): ${realFrameTime.toFixed(2)}ms frame-to-frame`)
-        log.error(`   ├─ GERÇEK Frame Süresi (GPU dahil): ${realFrameTime.toFixed(2)}ms`)
-        log.error(`   ├─ useFrame callback içi: ${frameTime.toFixed(2)}ms`)
-        log.error(`   ├─ JavaScript: ${jsTime.toFixed(2)}ms`)
-        log.error(`   ├─ WebGL komut gönderme: ${webglTime.toFixed(2)}ms`)
-        log.error(`   └─ GPU render + composite + v-sync: ${(realFrameTime - frameTime).toFixed(2)}ms ⚠️  YAVAŞ!`)
-      } else if (realFrameTime > 16.67) {
-        slowFramesRef.current++
-        log.warn(`🟡 #${totalFramesRef.current} SARI (CHROME): ${realFrameTime.toFixed(2)}ms frame-to-frame`)
-        log.warn(`   ├─ GERÇEK Frame Süresi (GPU dahil): ${realFrameTime.toFixed(2)}ms`)
-        log.warn(`   ├─ useFrame callback içi: ${frameTime.toFixed(2)}ms`)
-        log.warn(`   ├─ JavaScript: ${jsTime.toFixed(2)}ms`)
-        log.warn(`   ├─ WebGL komut gönderme: ${webglTime.toFixed(2)}ms`)
-        log.warn(`   └─ GPU render + composite + v-sync: ${(realFrameTime - frameTime).toFixed(2)}ms`)
-      } else if (realFrameTime > 0) {
-        log.info(`🟢 #${totalFramesRef.current} YEŞİL: ${realFrameTime.toFixed(2)}ms frame-to-frame (callback: ${frameTime.toFixed(2)}ms, GPU: ${(realFrameTime - frameTime).toFixed(2)}ms)`)
-      }
-    }
   })
 
   return (
@@ -585,14 +393,12 @@ void mainImage(const in vec4 inputColor, const in vec2 uv, out vec4 outputColor)
 
 class VignetteEffect extends Effect {
   constructor({ darkness = 1, offset = 1 } = {}) {
-    log.info(`Creating VignetteEffect (darkness: ${darkness}, offset: ${offset})`)
     super('VignetteEffect', vignetteFragmentShader, {
       uniforms: new Map([
         ['darkness', new THREE.Uniform(darkness)],
         ['offset', new THREE.Uniform(offset)]
       ])
     })
-    log.success('VignetteEffect created')
   }
 }
 
@@ -614,46 +420,6 @@ export default function WebGLBackground() {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    log.info('═══════════════════════════════════════════════')
-    log.info('🎨 WebGLBackground component mounted')
-    log.info('⚡ HIZLI FIX AKTIF - Performance Optimizations Enabled')
-    log.info('═══════════════════════════════════════════════')
-
-    // Device info
-    const dpr = typeof window !== 'undefined' ? window.devicePixelRatio : 1
-    const actualDpr = Math.min(dpr, 1.5)
-    log.info(`🖥️  Device Pixel Ratio: ${dpr} (capped at ${actualDpr})`)
-    log.info(`📐 Window size: ${typeof window !== 'undefined' ? `${window.innerWidth}x${window.innerHeight}` : 'N/A'}`)
-
-    // WebGL capability check
-    if (typeof window !== 'undefined') {
-      const canvas = document.createElement('canvas')
-      const gl = canvas.getContext('webgl2') || canvas.getContext('webgl')
-      if (gl) {
-        const debugInfo = gl.getExtension('WEBGL_debug_renderer_info')
-        if (debugInfo) {
-          const vendor = gl.getParameter(debugInfo.UNMASKED_VENDOR_WEBGL)
-          const renderer = gl.getParameter(debugInfo.UNMASKED_RENDERER_WEBGL)
-          log.info(`🎮 GPU Vendor: ${vendor}`)
-          log.info(`🎮 GPU Renderer: ${renderer}`)
-
-          // Intel GPU uyarısı
-          if (renderer.includes('Intel') && renderer.includes('UHD')) {
-            log.warn('⚠️⚠️⚠️ INTEGRATED GPU DETECTED ⚠️⚠️⚠️')
-            log.warn('Intel UHD Graphics - 262K particles may cause FPS drops!')
-            log.warn('Performance may vary. Consider reducing particle count for production.')
-          }
-        }
-        log.info(`✅ WebGL Version: ${gl.getParameter(gl.VERSION)}`)
-        log.info(`✅ GLSL Version: ${gl.getParameter(gl.SHADING_LANGUAGE_VERSION)}`)
-        log.info(`📊 Max Texture Size: ${gl.getParameter(gl.MAX_TEXTURE_SIZE)}`)
-      } else {
-        log.error('❌ WebGL not supported!')
-      }
-    }
-
-    // Intersection Observer - viewport visibility tracking with debounce
-    let visibilityChangeCount = 0
     let debounceTimer: NodeJS.Timeout | null = null
 
     const observer = new IntersectionObserver(
@@ -661,7 +427,6 @@ export default function WebGLBackground() {
         entries.forEach((entry) => {
           const nowVisible = entry.isIntersecting
 
-          // Debounce visibility changes to prevent rapid toggling
           if (debounceTimer) {
             clearTimeout(debounceTimer)
           }
@@ -669,44 +434,28 @@ export default function WebGLBackground() {
           debounceTimer = setTimeout(() => {
             setIsVisible((prev) => {
               if (prev !== nowVisible) {
-                visibilityChangeCount++
-                if (nowVisible) {
-                  log.success(`👁️  Background NOW VISIBLE - Resuming render (change #${visibilityChangeCount})`)
-                } else {
-                  log.warn(`🙈 Background HIDDEN - Pausing render to save GPU (change #${visibilityChangeCount})`)
-                }
+                return nowVisible
               }
-
-              return nowVisible
+              return prev
             })
-          }, 150) // 150ms debounce
+          }, 150)
         })
       },
       {
-        threshold: 0.3, // 30% görünür olmalı (daha az hassas)
-        rootMargin: '0px' // Tam viewport sınırında (50px yerine)
+        threshold: 0.3,
+        rootMargin: '0px'
       }
     )
 
     if (containerRef.current) {
       observer.observe(containerRef.current)
-      log.info('👁️  Intersection Observer initialized')
     }
 
-    const startTime = performance.now()
-
     return () => {
-      const duration = performance.now() - startTime
-
-      // Cleanup
       if (debounceTimer) {
         clearTimeout(debounceTimer)
       }
       observer.disconnect()
-
-      log.info('═══════════════════════════════════════════════')
-      log.info(`🔴 WebGLBackground unmounted (lived for ${(duration / 1000).toFixed(2)}s)`)
-      log.info('═══════════════════════════════════════════════')
     }
   }, [])
 
@@ -747,14 +496,6 @@ export default function WebGLBackground() {
         }}
         linear
         frameloop={isVisible ? 'always' : 'never'}
-        onCreated={(state) => {
-          log.success('🎨 Canvas created!')
-          log.info(`Canvas size: ${state.size.width}x${state.size.height}`)
-          log.info(`DPR: ${dpr} (native: ${window.devicePixelRatio.toFixed(2)})`)
-          log.info(`Viewport: ${state.viewport.width.toFixed(2)}x${state.viewport.height.toFixed(2)}`)
-          log.info(`Camera: ${state.camera.type}`)
-          log.info(`Initial visibility: ${isVisible}`)
-        }}
       >
         <color attach="background" args={['#000000']} />
         <ParticleSystem />
