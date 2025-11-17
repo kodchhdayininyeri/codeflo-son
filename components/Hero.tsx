@@ -1,15 +1,60 @@
 'use client'
 
-import WebGLBackground from './WebGLBackground'
+import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
+import { useEffect } from 'react'
+import WebGLErrorBoundary from './WebGLErrorBoundary'
+
+// Logging utility
+const HERO_LOG = '[Hero]'
+const heroLog = {
+  info: (...args: unknown[]) => console.log(`${HERO_LOG} ℹ️`, ...args),
+  success: (...args: unknown[]) => console.log(`${HERO_LOG} ✅`, ...args),
+  warn: (...args: unknown[]) => console.warn(`${HERO_LOG} ⚠️`, ...args),
+}
+
+// Lazy load WebGL - büyük bundle'ı initial load'dan ayır
+console.log(`${HERO_LOG} 📦 Registering dynamic import for WebGLBackground...`)
+const WebGLBackground = dynamic(
+  () => {
+    heroLog.info('⬇️  Starting WebGL bundle download...')
+    const startTime = performance.now()
+    return import('./WebGLBackground').then((mod) => {
+      const loadTime = performance.now() - startTime
+      heroLog.success(`WebGL bundle loaded in ${loadTime.toFixed(2)}ms`)
+      return mod
+    })
+  },
+  {
+    ssr: false, // Server-side rendering'i devre dışı bırak (WebGL browser-only)
+    loading: () => {
+      heroLog.info('⏳ WebGL loading... (showing fallback)')
+      return <div className="absolute inset-0 bg-black" />
+    }
+  }
+)
 
 export default function Hero() {
+  useEffect(() => {
+    heroLog.info('═══════════════════════════════════════════════')
+    heroLog.info('🦸 Hero component mounted')
+    heroLog.info('═══════════════════════════════════════════════')
+
+    const startTime = performance.now()
+
+    return () => {
+      const duration = performance.now() - startTime
+      heroLog.info(`🔴 Hero unmounted (lived for ${(duration / 1000).toFixed(2)}s)`)
+    }
+  }, [])
   return (
     <div className="flex flex-col h-svh pt-20 relative">
       {/* WebGL Background */}
       <div id="webgl" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
         <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', pointerEvents: 'auto' }}>
-          <WebGLBackground />
+          <WebGLErrorBoundary>
+            <WebGLBackground />
+          </WebGLErrorBoundary>
         </div>
       </div>
 

@@ -68,14 +68,11 @@ class SimulationMaterial extends THREE.ShaderMaterial {
       THREE.RGBAFormat,
       THREE.FloatType
     )
-    positionsTexture.minFilter = THREE.NearestFilter
-    positionsTexture.magFilter = THREE.NearestFilter
     positionsTexture.needsUpdate = true
-    log.success(`Position texture created: ${size}x${size} RGBA Float with NearestFilter`)
+    log.success(`Position texture created: ${size}x${size} RGBA Float`)
 
     super({
       vertexShader: `
-        precision mediump float; // Lower precision for 10-15% mobile performance gain
         varying vec2 vUv;
         void main() {
           vUv = uv;
@@ -83,7 +80,6 @@ class SimulationMaterial extends THREE.ShaderMaterial {
         }
       `,
       fragmentShader: `
-        precision mediump float; // Lower precision for 10-15% mobile performance gain
         uniform sampler2D positions;
         uniform float uTime;
         uniform float uNoiseScale;
@@ -109,9 +105,8 @@ class SimulationMaterial extends THREE.ShaderMaterial {
           float displacementY = periodicNoise(noiseInput + vec3(50.0, 0.0, 0.0), continuousTime + 2.094); // +120°
           float displacementZ = periodicNoise(noiseInput + vec3(0.0, 50.0, 0.0), continuousTime + 4.188); // +240°
 
-          // Apply distortion to original position with damping
+          // Apply distortion to original position
           vec3 distortion = vec3(displacementX, displacementY, displacementZ) * uNoiseIntensity;
-          distortion *= 0.75; // Velocity damping - prevents unbounded acceleration (5-10% perf gain)
           vec3 finalPos = originalPos + distortion;
 
           gl_FragColor = vec4(finalPos, 1.0);
@@ -135,7 +130,6 @@ class ParticlesMaterial extends THREE.ShaderMaterial {
     log.info('Creating ParticlesMaterial...')
     super({
       vertexShader: `
-        precision mediump float; // Lower precision for 10-15% mobile performance gain
         uniform sampler2D positions;
         uniform sampler2D initialPositions;
         uniform float uTime;
@@ -157,11 +151,10 @@ class ParticlesMaterial extends THREE.ShaderMaterial {
           vPosY = pos.y;
           vWorldPosition = pos;
           vInitialPosition = initialPos;
-          gl_PointSize = max(vDistance * uBlur * uPointSize, 3.0); // Balanced size for 341×341 grid
+          gl_PointSize = max(vDistance * uBlur * uPointSize, 3.0);
         }
       `,
       fragmentShader: `
-        precision mediump float; // Lower precision for 10-15% mobile performance gain
         uniform float uOpacity;
         uniform float uRevealFactor;
         uniform float uRevealProgress;
@@ -301,21 +294,10 @@ function ParticleSystem() {
   const totalFramesRef = useRef(0)
   const slowFramesRef = useRef(0)
   const criticalFramesRef = useRef(0)
-  const fboFrameSkipRef = useRef(0) // FBO throttle counter
-  const lastFrameTimeRef = useRef<number>(0) // GERÇEK frame time için (Chrome'un ölçtüğü)
 
   // Component lifecycle logging
   useEffect(() => {
     log.info('🚀 ParticleSystem component mounted')
-    log.info('⚡ OPTIMIZATIONS ACTIVE:')
-    log.info('  - Particle count: 512×512 = 262,144 particles')
-    log.info('  - Point size: 3.0 (original size)')
-    log.info('  - Velocity damping: Bounded acceleration → ~5-10% saved')
-    log.info('  - Shader precision: mediump → ~10-15% saved (mobile)')
-    log.info('  - NearestFilter: No texture interpolation → ~5-10% saved')
-    log.info('  - DPR capped at 1.0: Less pixel overhead → ~15-20% saved')
-    log.info('  - FBO throttle: Every 2 frames → ~30-35% saved')
-    log.info('  Expected TOTAL performance gain: ~65-85%! 🚀')
     const startTime = performance.now()
 
     return () => {
@@ -412,26 +394,11 @@ function ParticleSystem() {
     const { gl, clock } = state
     const frameStartTime = performance.now()
 
-    // ═══════════════════════════════════════════════════════════════
-    // GERÇEK FRAME TIME - Chrome'un Ölçtüğü (frame-to-frame delta)
-    // ═══════════════════════════════════════════════════════════════
-    const realFrameTime = lastFrameTimeRef.current === 0 ? 0 : frameStartTime - lastFrameTimeRef.current
-    lastFrameTimeRef.current = frameStartTime
-
-    // Detailed frame timing
-    let jsStartTime = 0
-    let jsEndTime = 0
-    let webglStartTime = 0
-    let webglEndTime = 0
-
     // Initialize start time
     if (startTimeRef.current === null) {
       startTimeRef.current = clock.elapsedTime
       log.info('🎬 Animation started!')
     }
-
-    // JavaScript execution timing başladı
-    jsStartTime = performance.now()
 
     // FPS monitoring (every second)
     frameCountRef.current++
@@ -484,26 +451,13 @@ function ParticleSystem() {
     simulationMaterial.uniforms.uNoiseIntensity.value = 0.52
     simulationMaterial.uniforms.uTimeScale.value = 1.0
 
-    // JavaScript hesaplamaları bitti
-    jsEndTime = performance.now()
-
-    // ═══════════════════════════════════════════════════════════════
-    // FBO THROTTLE: Her 2 frame'de bir render (50% FBO cost save!)
-    // ═══════════════════════════════════════════════════════════════
-    fboFrameSkipRef.current++
-
-    webglStartTime = performance.now()
-
-    if (fboFrameSkipRef.current >= 2) {
-      // Her 2 frame'de bir FBO render
-      fboFrameSkipRef.current = 0
-
-      gl.setRenderTarget(fbo)
-      gl.clear()
-      gl.render(simScene, simCamera)
-      gl.setRenderTarget(null)
-    }
-    // ═══════════════════════════════════════════════════════════════
+    // Render to FBO
+    const fboRenderStart = performance.now()
+    gl.setRenderTarget(fbo)
+    gl.clear()
+    gl.render(simScene, simCamera)
+    gl.setRenderTarget(null)
+    const fboRenderTime = performance.now() - fboRenderStart
 
     // Update particles material
     particlesMaterial.uniforms.positions.value = fbo.texture
@@ -512,43 +466,18 @@ function ParticleSystem() {
     particlesMaterial.uniforms.uRevealFactor.value = 4 * revealProgress
     particlesMaterial.uniforms.uRevealProgress.value = revealProgress
 
-    webglEndTime = performance.now()
-
-    // Frame timing - DETAYLI BREAKDOWN!
+    // Frame timing (only log if slow)
     const frameTime = performance.now() - frameStartTime
     totalFramesRef.current++
 
-    // Detaylı timing hesaplamaları
-    const jsTime = jsEndTime - jsStartTime
-    const webglTime = webglEndTime - webglStartTime
-
-    // ═══════════════════════════════════════════════════════════════
-    // GERÇEK FRAME TIME LOGGING (Chrome DevTools'un ölçtüğü)
-    // ═══════════════════════════════════════════════════════════════
-    // LOG HER FRAME (ilk 100 frame için)
-    if (totalFramesRef.current <= 100) {
-      // GERÇEK frame time kullan (bir önceki frame'den bu frame'e kadar geçen süre)
-      // Bu TAM OLARAK Chrome'un ölçtüğü şey!
-      if (realFrameTime > 33.33) {
-        criticalFramesRef.current++
-        slowFramesRef.current++
-        log.error(`🔴 #${totalFramesRef.current} KIRMIZI (CHROME): ${realFrameTime.toFixed(2)}ms frame-to-frame`)
-        log.error(`   ├─ GERÇEK Frame Süresi (GPU dahil): ${realFrameTime.toFixed(2)}ms`)
-        log.error(`   ├─ useFrame callback içi: ${frameTime.toFixed(2)}ms`)
-        log.error(`   ├─ JavaScript: ${jsTime.toFixed(2)}ms`)
-        log.error(`   ├─ WebGL komut gönderme: ${webglTime.toFixed(2)}ms`)
-        log.error(`   └─ GPU render + composite + v-sync: ${(realFrameTime - frameTime).toFixed(2)}ms ⚠️  YAVAŞ!`)
-      } else if (realFrameTime > 16.67) {
-        slowFramesRef.current++
-        log.warn(`🟡 #${totalFramesRef.current} SARI (CHROME): ${realFrameTime.toFixed(2)}ms frame-to-frame`)
-        log.warn(`   ├─ GERÇEK Frame Süresi (GPU dahil): ${realFrameTime.toFixed(2)}ms`)
-        log.warn(`   ├─ useFrame callback içi: ${frameTime.toFixed(2)}ms`)
-        log.warn(`   ├─ JavaScript: ${jsTime.toFixed(2)}ms`)
-        log.warn(`   ├─ WebGL komut gönderme: ${webglTime.toFixed(2)}ms`)
-        log.warn(`   └─ GPU render + composite + v-sync: ${(realFrameTime - frameTime).toFixed(2)}ms`)
-      } else if (realFrameTime > 0) {
-        log.info(`🟢 #${totalFramesRef.current} YEŞİL: ${realFrameTime.toFixed(2)}ms frame-to-frame (callback: ${frameTime.toFixed(2)}ms, GPU: ${(realFrameTime - frameTime).toFixed(2)}ms)`)
-      }
+    if (frameTime > 33.33) { // Slower than 30fps
+      criticalFramesRef.current++
+      slowFramesRef.current++
+      log.error(`⏱️⏱️  VERY SLOW FRAME: ${frameTime.toFixed(2)}ms (target: 16.67ms for 60fps)`)
+    } else if (frameTime > 16.67) { // Slower than 60fps (16.67ms)
+      slowFramesRef.current++
+      const fboPercent = ((fboRenderTime / frameTime) * 100).toFixed(1)
+      log.warn(`⏱️  Slow frame: ${frameTime.toFixed(2)}ms total (FBO: ${fboRenderTime.toFixed(2)}ms = ${fboPercent}%)`)
     }
   })
 
@@ -616,7 +545,6 @@ export default function WebGLBackground() {
   useEffect(() => {
     log.info('═══════════════════════════════════════════════')
     log.info('🎨 WebGLBackground component mounted')
-    log.info('⚡ HIZLI FIX AKTIF - Performance Optimizations Enabled')
     log.info('═══════════════════════════════════════════════')
 
     // Device info
@@ -710,8 +638,7 @@ export default function WebGLBackground() {
     }
   }, [])
 
-  // DPR optimization: Cap at 1.0 for Intel UHD Graphics performance
-  const dpr = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 1.0) : 1
+  const dpr = typeof window !== 'undefined' ? Math.min(window.devicePixelRatio, 1.5) : 1
 
   return (
     <div
@@ -746,11 +673,10 @@ export default function WebGLBackground() {
           debounce: 200 // Resize gibi olaylarda gecikme
         }}
         linear
-        frameloop={isVisible ? 'always' : 'never'}
+        frameloop={isVisible ? 'always' : 'never'} // Visibility-based rendering! 🎯
         onCreated={(state) => {
           log.success('🎨 Canvas created!')
           log.info(`Canvas size: ${state.size.width}x${state.size.height}`)
-          log.info(`DPR: ${dpr} (native: ${window.devicePixelRatio.toFixed(2)})`)
           log.info(`Viewport: ${state.viewport.width.toFixed(2)}x${state.viewport.height.toFixed(2)}`)
           log.info(`Camera: ${state.camera.type}`)
           log.info(`Initial visibility: ${isVisible}`)

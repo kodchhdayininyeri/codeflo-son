@@ -14,9 +14,19 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "",
+  title: "CodeFlo - AI-Powered Business Automation & Workflow Solutions",
   description: "Boost productivity and revenue with AI-driven automation tailored for your business. AI Agents, Workflow Automation, and Lead Generation.",
   keywords: "AI automation, workflow automation, lead generation, AI agents, business automation, productivity",
+  authors: [{ name: "CodeFlo" }],
+  openGraph: {
+    title: "CodeFlo - AI-Powered Business Automation",
+    description: "Automate your business with AI agents and custom workflows",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  }
 };
 
 export default function RootLayout({

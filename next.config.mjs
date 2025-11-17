@@ -1,3 +1,9 @@
+import bundleAnalyzer from '@next/bundle-analyzer'
+
+const withBundleAnalyzer = bundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Optimize heavy 3D libraries - only import what's used
@@ -5,15 +11,11 @@ const nextConfig = {
     optimizePackageImports: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing']
   },
 
-  // Aggressive tree shaking to remove unused code
+  // Let Next.js handle optimization automatically
   webpack: (config) => {
-    config.optimization = {
-      ...config.optimization,
-      usedExports: true,
-      sideEffects: false,
-    };
+    // Next.js already optimizes webpack, no manual config needed
     return config;
   }
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
