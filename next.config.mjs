@@ -11,6 +11,16 @@ const nextConfig = {
     optimizePackageImports: ['three', '@react-three/fiber', '@react-three/drei', '@react-three/postprocessing']
   },
 
+  // Allow external images from Unsplash
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
+
   // Let Next.js handle optimization automatically
   webpack: (config) => {
     // Next.js already optimizes webpack, no manual config needed

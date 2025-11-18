@@ -2,7 +2,7 @@ import ScrollReveal from './ScrollReveal'
 
 export default function WhyAutomation() {
   return (
-    <section id="why-automation" style={{ background: 'var(--background)', padding: '6rem 1.5rem' }}>
+    <section id="why-automation" style={{ background: 'var(--background)', padding: '6rem 1.5rem 14rem 1.5rem', scrollMarginTop: '100px' }}>
       <div className="container">
         <ScrollReveal className="animate-fade-in-up">
           <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>Why do you need automation?</h2>

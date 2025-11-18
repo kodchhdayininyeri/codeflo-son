@@ -19,7 +19,7 @@ export default function Header() {
         <nav className="flex-1 flex max-lg:hidden items-center justify-end gap-8">
           <a
             className="uppercase inline-block font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out"
-            href="/home"
+            href="/"
           >
             Home
           </a>
@@ -95,7 +95,7 @@ export default function Header() {
         <div className="lg:hidden bg-background/95 backdrop-blur-md border-b border-foreground/20 mt-4">
           <nav className="flex flex-col p-6 gap-4">
             <a
-              href="/home"
+              href="/"
               className="uppercase font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out py-2"
               onClick={() => setMobileMenuOpen(false)}
             >

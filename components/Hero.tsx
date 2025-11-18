@@ -54,7 +54,7 @@ export default function Hero() {
           </p>
 
           {/* Get Started Button - Desktop */}
-          <a className="contents max-sm:hidden" href="/request-demo">
+          <a className="contents max-sm:hidden" href="#why-automation">
             <button
               data-slot="button"
               className="inline-flex relative uppercase font-mono cursor-pointer items-center has-[>svg]:px-3 justify-center gap-2 whitespace-nowrap font-medium ease-out transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none bg-background text-primary-foreground hover:shadow-[#5a0e27]/80 h-16 px-6 text-base mt-6"
@@ -69,7 +69,7 @@ export default function Hero() {
           </a>
 
           {/* Get Started Button - Mobile */}
-          <a className="contents sm:hidden" href="/request-demo">
+          <a className="contents sm:hidden" href="#why-automation">
             <button
               data-slot="button"
               className="inline-flex relative uppercase font-mono cursor-pointer items-center has-[>svg]:px-3 justify-center gap-2 whitespace-nowrap font-medium ease-out transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none bg-background text-primary-foreground hover:shadow-[#5a0e27]/80 h-14 px-6 text-sm mt-6"
