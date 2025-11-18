@@ -30,7 +30,7 @@ export default function ContactNewsletter() {
         setStatus('error')
         setMessage('Failed to subscribe. Please try again.')
       }
-    } catch (error) {
+    } catch {
       setStatus('error')
       setMessage('An error occurred. Please try again.')
     }

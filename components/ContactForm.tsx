@@ -33,7 +33,7 @@ export default function ContactForm() {
         setStatus('error')
         setMessage('Failed to send message. Please try again.')
       }
-    } catch (error) {
+    } catch {
       setStatus('error')
       setMessage('An error occurred. Please try again.')
     }
