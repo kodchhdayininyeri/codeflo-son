@@ -4,49 +4,8 @@ import Image from 'next/image'
 import Header from '@/components/Header'
 import ScrollReveal from '@/components/ScrollReveal'
 import ContactNewsletter from '@/components/ContactNewsletter'
-import { useEffect } from 'react'
 
 export default function SolutionsPage() {
-  useEffect(() => {
-    console.log('=== SOLUTIONS PAGE DEBUG ===')
-    const desktopGallery = document.querySelector('.desktop-gallery')
-    const gridElement = document.querySelector('.gallery-grid')
-    console.log('Desktop gallery element:', desktopGallery)
-    console.log('Grid element:', gridElement)
-
-    if (desktopGallery) {
-      const styles = window.getComputedStyle(desktopGallery)
-      console.log('Desktop gallery computed styles:', {
-        width: desktopGallery.offsetWidth,
-        height: desktopGallery.offsetHeight,
-        display: styles.display,
-        minHeight: styles.minHeight
-      })
-    }
-
-    if (gridElement) {
-      const styles = window.getComputedStyle(gridElement)
-      console.log('Grid computed styles:', {
-        width: gridElement.offsetWidth,
-        height: gridElement.offsetHeight,
-        display: styles.display,
-        gridTemplateColumns: styles.gridTemplateColumns,
-        gridTemplateRows: styles.gridTemplateRows
-      })
-    }
-
-    const allImages = document.querySelectorAll('.gallery-grid img')
-    console.log('Total images found:', allImages.length)
-    allImages.forEach((img, i) => {
-      console.log(`Image ${i + 1}:`, {
-        src: img.src,
-        width: img.offsetWidth,
-        height: img.offsetHeight,
-        naturalWidth: img.naturalWidth,
-        naturalHeight: img.naturalHeight
-      })
-    })
-  }, [])
   return (
     <>
       <Header />
