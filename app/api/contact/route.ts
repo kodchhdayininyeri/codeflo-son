@@ -2,6 +2,19 @@ import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 
 export async function POST(request: Request) {
+  console.log('=== CONTACT API DEBUG ===')
+  console.log('API Key exists:', !!process.env.RESEND_API_KEY)
+  console.log('API Key first 10 chars:', process.env.RESEND_API_KEY?.substring(0, 10))
+  console.log('All env keys:', Object.keys(process.env).filter(k => k.includes('RESEND')))
+
+  if (!process.env.RESEND_API_KEY) {
+    console.error('RESEND_API_KEY is not defined!')
+    return NextResponse.json(
+      { error: 'API key not configured' },
+      { status: 500 }
+    )
+  }
+
   const resend = new Resend(process.env.RESEND_API_KEY)
   try {
     const { name, email, message } = await request.json()
