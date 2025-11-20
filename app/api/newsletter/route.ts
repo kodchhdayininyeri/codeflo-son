@@ -34,7 +34,8 @@ export async function POST(request: Request) {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
-      hour12: false
+      hour12: false,
+      timeZone: 'Europe/Istanbul'
     })
 
     await resend.emails.send({
