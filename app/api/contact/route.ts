@@ -1,32 +1,88 @@
 import { NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
+
+// Email validation regex
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const MAX_EMAIL_LENGTH = 254
+const MAX_NAME_LENGTH = 100
+const MAX_MESSAGE_LENGTH = 5000
+
+// HTML escape function to prevent XSS
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
 
 export async function POST(request: Request) {
-  console.log('=== CONTACT API DEBUG ===')
-  console.log('API Key exists:', !!process.env.RESEND_API_KEY)
-  console.log('API Key first 10 chars:', process.env.RESEND_API_KEY?.substring(0, 10))
-  console.log('All env keys:', Object.keys(process.env).filter(k => k.includes('RESEND')))
-
-  if (!process.env.RESEND_API_KEY) {
-    console.error('RESEND_API_KEY is not defined!')
-    return NextResponse.json(
-      { error: 'API key not configured' },
-      { status: 500 }
-    )
-  }
-
-  const resend = new Resend(process.env.RESEND_API_KEY)
   try {
     const { name, email, message } = await request.json()
 
-    if (!name || !email || !message) {
+    // Input validation
+    if (!name || typeof name !== 'string') {
       return NextResponse.json(
-        { error: 'All fields are required' },
+        { error: 'Name is required' },
         { status: 400 }
       )
     }
 
-    // Tarih formatı
+    if (!email || typeof email !== 'string') {
+      return NextResponse.json(
+        { error: 'Email is required' },
+        { status: 400 }
+      )
+    }
+
+    if (!message || typeof message !== 'string') {
+      return NextResponse.json(
+        { error: 'Message is required' },
+        { status: 400 }
+      )
+    }
+
+    // Length validation
+    if (name.length > MAX_NAME_LENGTH) {
+      return NextResponse.json(
+        { error: 'Name is too long' },
+        { status: 400 }
+      )
+    }
+
+    if (email.length > MAX_EMAIL_LENGTH) {
+      return NextResponse.json(
+        { error: 'Email address too long' },
+        { status: 400 }
+      )
+    }
+
+    if (message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        { error: 'Message is too long' },
+        { status: 400 }
+      )
+    }
+
+    // Email format validation
+    if (!EMAIL_REGEX.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
+        { status: 400 }
+      )
+    }
+
+    // Create nodemailer transporter with Gmail
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+    })
+
+    // Date formatting (Europe/Istanbul timezone)
     const currentDate = new Date().toLocaleString('en-GB', {
       day: '2-digit',
       month: '2-digit',
@@ -38,18 +94,20 @@ export async function POST(request: Request) {
       timeZone: 'Europe/Istanbul'
     })
 
-    await resend.emails.send({
-      from: 'CodeFlo <onboarding@resend.dev>',
-      to: 'info@codeflo.tech',
+    // Send email
+    await transporter.sendMail({
+      from: '"CodeFlo Website" <' + process.env.GMAIL_USER + '>',
+      to: process.env.NEWSLETTER_RECIPIENT || 'emirhan.salci704@gmail.com',
       subject: 'New Contact Request',
       html: `
-        <p><strong>New Contact Request</strong></p>
-        <p>Date: ${currentDate}</p>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
+        <h2>New Contact Request</h2>
+        <p><strong>Date:</strong> ${escapeHtml(currentDate)}</p>
+        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `
+        <p>${escapeHtml(message)}</p>
+      `,
+      replyTo: email, // Allows you to reply directly to the sender
     })
 
     return NextResponse.json(
@@ -59,7 +117,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('Contact form error:', error)
     return NextResponse.json(
-      { error: 'Failed to send message' },
+      { error: 'Failed to send message. Please try again.' },
       { status: 500 }
     )
   }
