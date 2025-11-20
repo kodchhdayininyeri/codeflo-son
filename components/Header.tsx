@@ -1,18 +1,24 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="fixed z-50 py-4 top-0 left-0 w-full bg-background/80 backdrop-blur-md border-b border-foreground/10">
+    <div className="fixed z-50 py-3 top-0 left-0 w-full bg-background/80 backdrop-blur-md border-b border-foreground/10">
       <header className="flex flex-row items-center w-full px-6">
         {/* Logo */}
         <a className="flex items-center gap-3" href="/">
-          <span className="text-2xl font-bold text-foreground" style={{ fontFamily: 'var(--font-sentient)' }}>
-            Logo
-          </span>
+          <Image
+            src="/codeflo-png.png"
+            alt="CodeFlo Logo"
+            width={150}
+            height={40}
+            priority
+            className="h-[60px] w-auto"
+          />
         </a>
 
         {/* Desktop Navigation */}

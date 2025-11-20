@@ -11,8 +11,7 @@ export default function WhoAreWe() {
               Who are we?
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Based in London, we help businesses boost productivity and revenue
-              through smart AI automation and seamless workflow integration.
+              We help businesses boost productivity and revenue through smart AI automation and seamless workflow integration.
             </p>
           </div>
         </ScrollReveal>

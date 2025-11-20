@@ -78,7 +78,7 @@ export default function SolutionsPage() {
                       lineHeight: 1.6,
                       color: 'rgb(200, 200, 200)'
                     }}>
-                      We build AI-driven pipelines for businesses to double their qualified leads to keep data flowing smoothly across CRM and email platforms, as well as turning perfecting the process of turning cold leads to customers.
+                      We build AI-driven pipelines for businesses to double their qualified leads to keep data flowing smoothly across CRM and email platforms, as well as perfecting the process of turning cold leads to customers.
                     </p>
                   </div>
                 </ScrollReveal>

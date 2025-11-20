@@ -12,9 +12,8 @@ export default function Testimonials() {
           <ScrollReveal className="animate-fade-in-left">
             <div className="testimonial-card" style={{ background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(117, 167, 212, 0.2)' }}>
               <div style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--primary)' }}>★★★★★</div>
-              <blockquote style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-                With the help of Codeflo team, we transformed our workflow,<br />
-                saving hours daily with smart AI automation.
+              <blockquote style={{ fontSize: '0.80rem', lineHeight: '1.5' }}>
+                With the help of Codeflo team, we transformed our workflow, saving hours daily with smart AI automation.
               </blockquote>
               <div className="testimonial-author" style={{ marginTop: '1.5rem', fontWeight: '600' }}>Emma R.</div>
             </div>
@@ -23,9 +22,8 @@ export default function Testimonials() {
           <ScrollReveal className="animate-fade-in-right">
             <div className="testimonial-card" style={{ background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(117, 167, 212, 0.2)' }}>
               <div style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--primary)' }}>★★★★★</div>
-              <blockquote style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-                Codeflo cut our lead generation time in half and boosted our<br />
-                sales pipeline significantly.
+              <blockquote style={{ fontSize: '0.80rem', lineHeight: '1.5' }}>
+                Codeflo cut our lead generation time in half and boosted our sales pipeline significantly.
               </blockquote>
               <div className="testimonial-author" style={{ marginTop: '1.5rem', fontWeight: '600' }}>Mark T.</div>
             </div>
@@ -34,9 +32,8 @@ export default function Testimonials() {
           <ScrollReveal className="animate-fade-in-left">
             <div className="testimonial-card" style={{ background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(10px)', border: '1px solid rgba(117, 167, 212, 0.2)' }}>
               <div style={{ fontSize: '2rem', marginBottom: '1rem', color: 'var(--primary)' }}>★★★★★</div>
-              <blockquote style={{ fontSize: '1.1rem', lineHeight: '1.6' }}>
-                Codeflo integrated seamlessly into our processes, eliminating<br />
-                repetitive tasks and freeing our team to focus on high-value work.
+              <blockquote style={{ fontSize: '0.80rem', lineHeight: '1.5' }}>
+                Codeflo integrated seamlessly into our processes, eliminating repetitive tasks and freeing our team to focus on high-value work.
               </blockquote>
               <div className="testimonial-author" style={{ marginTop: '1.5rem', fontWeight: '600' }}>Mateusz P.</div>
             </div>

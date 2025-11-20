@@ -14,7 +14,7 @@ const WebGLBackground = dynamic(
 
 export default function Hero() {
   return (
-    <div className="flex flex-col h-svh pt-20 relative">
+    <div className="flex flex-col min-h-svh pt-20 pb-12 relative">
       {/* WebGL Background */}
       <div id="webgl" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
         <div style={{ position: 'relative', width: '100%', height: '100%', overflow: 'hidden', pointerEvents: 'auto' }}>

@@ -24,6 +24,12 @@ export const metadata: Metadata = {
   description: "Boost productivity and revenue with AI-driven automation tailored for your business. AI Agents, Workflow Automation, and Lead Generation.",
   keywords: "AI automation, workflow automation, lead generation, AI agents, business automation, productivity",
   authors: [{ name: "CodeFlo" }],
+  icons: {
+    icon: [
+      { url: '/x.png', sizes: '32x32', type: 'image/png' },
+      { url: '/x.png', sizes: '16x16', type: 'image/png' }
+    ],
+  },
   openGraph: {
     title: "CodeFlo - AI-Powered Business Automation",
     description: "Automate your business with AI agents and custom workflows",

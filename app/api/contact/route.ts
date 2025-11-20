@@ -105,7 +105,7 @@ export async function POST(request: Request) {
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
         <p><strong>Message:</strong></p>
-        <p>${escapeHtml(message)}</p>
+        <p style="white-space: pre-wrap;">${escapeHtml(message)}</p>
       `,
       replyTo: email, // Allows you to reply directly to the sender
     })

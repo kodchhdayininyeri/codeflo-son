@@ -420,15 +420,9 @@ section h2 {
 /* Testimonials Section */
 .testimonials-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  max-width: 90rem;
-  margin: 0 auto;
-}
-
-.testimonials-grid > *:nth-child(3) {
-  grid-column: 1 / -1;
-  max-width: calc(50% - 1rem);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 110rem;
   margin: 0 auto;
 }
 
@@ -436,14 +430,10 @@ section h2 {
   .testimonials-grid {
     grid-template-columns: 1fr;
   }
-
-  .testimonials-grid > *:nth-child(3) {
-    max-width: 100%;
-  }
 }
 
 .testimonial-card {
-  padding: 2rem;
+  padding: 1rem;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border);
   border-radius: 0.5rem;
