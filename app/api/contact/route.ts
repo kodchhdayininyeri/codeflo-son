@@ -39,7 +39,7 @@ export async function POST(request: Request) {
 
     await resend.emails.send({
       from: 'CodeFlo <onboarding@resend.dev>',
-      to: 'info@codeflo.tech',
+      to: 'emirhan.salci70@gmail.com',
       subject: 'New Contact Request',
       html: `
         <p><strong>New Contact Request</strong></p>

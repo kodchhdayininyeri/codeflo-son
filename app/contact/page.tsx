@@ -34,7 +34,7 @@ export default function ContactPage() {
 
                 <ScrollReveal>
                   <p style={{
-                    fontSize: '16px',
+                    fontSize: '20px',
                     color: 'rgb(200, 200, 200)',
                     marginBottom: '48px',
                     lineHeight: 1.5
@@ -48,7 +48,7 @@ export default function ContactPage() {
                   <ScrollReveal>
                     <div>
                       <h6 style={{
-                        fontSize: '16px',
+                        fontSize: '28px',
                         fontWeight: 'bold',
                         color: '#ffffff',
                         marginBottom: '8px'
@@ -56,7 +56,7 @@ export default function ContactPage() {
                         Phone
                       </h6>
                       <a href="tel:+447721929136" style={{
-                        fontSize: '14px',
+                        fontSize: '18px',
                         color: 'rgb(200, 200, 200)',
                         textDecoration: 'none'
                       }}>
@@ -68,7 +68,7 @@ export default function ContactPage() {
                   <ScrollReveal>
                     <div>
                       <h6 style={{
-                        fontSize: '16px',
+                        fontSize: '28px',
                         fontWeight: 'bold',
                         color: '#ffffff',
                         marginBottom: '8px'
@@ -76,7 +76,7 @@ export default function ContactPage() {
                         Email
                       </h6>
                       <a href="mailto:info@codeflo.tech" style={{
-                        fontSize: '14px',
+                        fontSize: '18px',
                         color: 'rgb(200, 200, 200)',
                         textDecoration: 'none'
                       }}>
@@ -118,12 +118,13 @@ export default function ContactPage() {
             {/* Subtitle */}
             <ScrollReveal>
               <p style={{
-                fontSize: '16px',
+                fontSize: '20px',
                 color: 'rgb(200, 200, 200)',
                 textAlign: 'center',
-                maxWidth: '596px',
+                maxWidth: '900px',
                 margin: '0 auto 64px auto',
-                lineHeight: 1.5
+                lineHeight: 1.5,
+                whiteSpace: 'nowrap'
               }}>
                 Find us in the heart of London, where ideas meet action and automation begins.
               </p>
@@ -135,7 +136,7 @@ export default function ContactPage() {
               <ScrollReveal>
                 <div>
                   <h6 style={{
-                    fontSize: '16px',
+                    fontSize: '28px',
                     fontWeight: 'bold',
                     color: '#ffffff',
                     marginBottom: '16px'
@@ -143,7 +144,7 @@ export default function ContactPage() {
                     Address
                   </h6>
                   <p style={{
-                    fontSize: '14px',
+                    fontSize: '18px',
                     color: 'rgb(200, 200, 200)',
                     lineHeight: 1.6
                   }}>

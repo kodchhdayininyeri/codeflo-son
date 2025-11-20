@@ -41,16 +41,16 @@ export default function Hero() {
           </h1>
 
           <p
-            className="font-mono text-sm sm:text-base text-center text-balance mt-4 sm:mt-6 max-w-[700px] mx-auto"
+            className="font-mono text-base sm:text-lg text-center text-balance mt-4 sm:mt-6 max-w-[700px] mx-auto"
             style={{
-              color: '#ffffff',
-              fontWeight: 400,
+              color: '#FFFFFF',
+              fontWeight: 700,
               letterSpacing: '-0.01em',
               lineHeight: '1.6',
-              textShadow: '0 2px 12px rgba(0, 0, 0, 0.3)'
+              textShadow: '2px 2px 8px rgba(0, 0, 0, 1), -2px -2px 8px rgba(0, 0, 0, 1), 2px -2px 8px rgba(0, 0, 0, 1), -2px 2px 8px rgba(0, 0, 0, 1), 0 0 40px rgba(0, 0, 0, 1), 0 0 20px rgba(0, 0, 0, 1)'
             }}
           >
-            Boost productivity and revenue with AI-driven automation tailored for your business.
+            Boost productivity and revenue with AI-driven<br />automation tailored for your business.
           </p>
 
           {/* Get Started Button - Desktop */}
@@ -95,10 +95,10 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-foreground">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">
                   AI Agents
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground text-base leading-relaxed">
                   AI Agents that handle everyday operations seamlessly
                 </p>
               </motion.div>
@@ -111,10 +111,10 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
               >
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-foreground">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">
                   Workflow
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground text-base leading-relaxed">
                   Customised workflows to automate your time consuming tasks
                 </p>
               </motion.div>
@@ -127,10 +127,10 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
               >
-                <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-foreground">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">
                   Revenue Growth
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
+                <p className="text-muted-foreground text-base leading-relaxed">
                   Lead generation automation to interact with clients and increase sales
                 </p>
               </motion.div>

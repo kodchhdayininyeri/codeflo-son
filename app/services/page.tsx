@@ -34,7 +34,7 @@ export default function ServicesPage() {
                 maxWidth: '800px',
                 margin: '0 auto'
               }}>
-                Helping London businesses automate workflows and grow revenue.
+                Helping businesses automate workflows and grow revenue.
               </p>
             </div>
           </ScrollReveal>
@@ -308,33 +308,28 @@ export default function ServicesPage() {
               }
             ].map((faq, index) => (
               <ScrollReveal key={index} className="animate-fade-in-up">
-                <details style={{
+                <div style={{
                   textAlign: 'center',
-                  padding: '24px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                  borderRadius: '8px',
-                  cursor: 'pointer',
-                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                  padding: '24px 0'
                 }}>
-                  <summary style={{
+                  <h4 style={{
                     fontSize: '20px',
                     fontWeight: 700,
                     lineHeight: 1.3,
                     color: '#ffffff',
-                    cursor: 'pointer',
-                    listStyle: 'none'
+                    marginBottom: '16px'
                   }}>
                     {faq.q}
-                  </summary>
+                  </h4>
                   <p style={{
-                    marginTop: '16px',
                     fontSize: '16px',
                     lineHeight: 1.6,
-                    color: 'rgb(200, 200, 200)'
+                    color: 'rgb(200, 200, 200)',
+                    margin: 0
                   }}>
                     {faq.a}
                   </p>
-                </details>
+                </div>
               </ScrollReveal>
             ))}
           </div>

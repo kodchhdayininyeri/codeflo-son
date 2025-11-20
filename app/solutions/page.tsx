@@ -32,11 +32,11 @@ export default function SolutionsPage() {
             {/* Subtitle */}
             <ScrollReveal>
               <p style={{
-                fontSize: '16px',
+                fontSize: '20px',
                 color: 'rgb(200, 200, 200)',
                 marginBottom: '80px'
               }}>
-                Automating repetitive tasks to save hours weekly.
+                Automating repetitive tasks to save hours so you can focus on what's important for you.
               </p>
             </ScrollReveal>
 
@@ -65,7 +65,7 @@ export default function SolutionsPage() {
                 <ScrollReveal className="animate-fade-in-right">
                   <div>
                     <h5 style={{
-                      fontSize: '20px',
+                      fontSize: '28px',
                       lineHeight: 1.3,
                       marginBottom: '16px',
                       color: '#ffffff',
@@ -74,11 +74,11 @@ export default function SolutionsPage() {
                       Lead Growth
                     </h5>
                     <p style={{
-                      fontSize: '14px',
+                      fontSize: '18px',
                       lineHeight: 1.6,
                       color: 'rgb(200, 200, 200)'
                     }}>
-                      We built an AI-driven pipeline for a retail client that doubled their qualified leads in three months while integrating n8n to keep data flowing smoothly across CRM and email platforms.
+                      We build AI-driven pipelines for businesses to double their qualified leads to keep data flowing smoothly across CRM and email platforms, as well as turning perfecting the process of turning cold leads to customers.
                     </p>
                   </div>
                 </ScrollReveal>
@@ -106,7 +106,7 @@ export default function SolutionsPage() {
                 <ScrollReveal className="animate-fade-in-right">
                   <div>
                     <h5 style={{
-                      fontSize: '20px',
+                      fontSize: '28px',
                       lineHeight: 1.3,
                       marginBottom: '16px',
                       color: '#ffffff',
@@ -115,7 +115,7 @@ export default function SolutionsPage() {
                       AI Integration
                     </h5>
                     <p style={{
-                      fontSize: '14px',
+                      fontSize: '18px',
                       lineHeight: 1.6,
                       color: 'rgb(200, 200, 200)'
                     }}>
