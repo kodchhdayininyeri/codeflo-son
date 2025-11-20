@@ -36,7 +36,7 @@ export default function SolutionsPage() {
                 color: 'rgb(200, 200, 200)',
                 marginBottom: '80px'
               }}>
-                Automating repetitive tasks to save hours so you can focus on what's important for you.
+                Automating repetitive tasks to save hours so you can focus on what&apos;s important for you.
               </p>
             </ScrollReveal>
 
