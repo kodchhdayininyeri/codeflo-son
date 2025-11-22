@@ -24,25 +24,25 @@ export default function Header() {
         {/* Desktop Navigation */}
         <nav className="flex-1 flex max-lg:hidden items-center justify-end gap-8">
           <a
-            className="uppercase inline-block font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out"
+            className="uppercase inline-block font-mono text-white/30 hover:text-white duration-300 transition-all ease-out"
             href="/"
           >
             Home
           </a>
           <a
-            className="uppercase inline-block font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out"
+            className="uppercase inline-block font-mono text-white/30 hover:text-white duration-300 transition-all ease-out"
             href="/services"
           >
             Services
           </a>
           <a
-            className="uppercase inline-block font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out"
+            className="uppercase inline-block font-mono text-white/30 hover:text-white duration-300 transition-all ease-out"
             href="/solutions"
           >
             Solutions
           </a>
           <a
-            className="uppercase inline-block font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out"
+            className="uppercase inline-block font-mono text-white/30 hover:text-white duration-300 transition-all ease-out"
             href="/contact"
           >
             Contact
@@ -102,28 +102,28 @@ export default function Header() {
           <nav className="flex flex-col p-6 gap-4">
             <a
               href="/"
-              className="uppercase font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out py-2"
+              className="uppercase font-mono text-white/30 hover:text-white duration-300 transition-all ease-out py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
             </a>
             <a
               href="/services"
-              className="uppercase font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out py-2"
+              className="uppercase font-mono text-white/30 hover:text-white duration-300 transition-all ease-out py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Services
             </a>
             <a
               href="/solutions"
-              className="uppercase font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out py-2"
+              className="uppercase font-mono text-white/30 hover:text-white duration-300 transition-all ease-out py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Solutions
             </a>
             <a
               href="/contact"
-              className="uppercase font-mono text-foreground/30 hover:text-foreground duration-300 transition-all ease-out py-2"
+              className="uppercase font-mono text-white/30 hover:text-white duration-300 transition-all ease-out py-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact

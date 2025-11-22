@@ -42,7 +42,7 @@ export default function ContactNewsletter() {
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
           <ScrollReveal className="animate-fade-in-left">
             <div>
-              <h2 className="text-4xl font-bold mb-6 text-white text-left">Contact</h2>
+              <h2 className="text-4xl font-bold mb-6 text-white text-left" style={{ fontSize: '2.25rem' }}>Contact</h2>
               <p className="text-gray-400 mb-12 text-lg text-left">
                 Reach out to streamline your workflow.
               </p>
@@ -67,7 +67,7 @@ export default function ContactNewsletter() {
 
           <ScrollReveal className="animate-fade-in-right">
             <div>
-              <h2 className="text-4xl font-bold mb-6 text-white text-center">
+              <h2 className="text-4xl font-bold mb-6 text-white text-center" style={{ fontSize: '2.25rem' }}>
                 Subscribe to our newsletter for updates
               </h2>
               <p className="text-gray-400 mb-8 text-center text-lg">

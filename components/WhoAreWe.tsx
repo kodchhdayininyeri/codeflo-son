@@ -7,7 +7,7 @@ export default function WhoAreWe() {
       <div className="container mx-auto px-4 sm:px-8">
         <ScrollReveal className="animate-fade-in-up">
           <div className="text-center mb-12">
-            <h2 className="text-4xl sm:text-5xl font-sentient mb-8 text-foreground">
+            <h2 className="text-4xl sm:text-5xl font-sentient mb-8 text-foreground" style={{ fontSize: 'clamp(2.25rem, 4vw, 3rem)' }}>
               Who are we?
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">

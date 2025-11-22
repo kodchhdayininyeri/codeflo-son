@@ -31,6 +31,7 @@ export default function Hero() {
             className="text-4xl sm:text-6xl md:text-7xl font-sentient text-center font-bold drop-shadow-2xl"
             style={{
               color: '#FFFFFF',
+              fontSize: 'clamp(2.25rem, 5vw, 4.5rem)',
               fontWeight: 700,
               letterSpacing: '-0.02em',
               lineHeight: '1.1',
@@ -95,7 +96,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.8 }}
               >
-                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.5rem)' }}>
                   AI Agents
                 </h3>
                 <p className="text-muted-foreground text-base leading-relaxed">
@@ -111,7 +112,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.0 }}
               >
-                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.5rem)' }}>
                   Workflow
                 </h3>
                 <p className="text-muted-foreground text-base leading-relaxed">
@@ -127,7 +128,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
               >
-                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-foreground" style={{ fontSize: 'clamp(1.25rem, 2vw, 1.5rem)' }}>
                   Revenue Growth
                 </h3>
                 <p className="text-muted-foreground text-base leading-relaxed">
