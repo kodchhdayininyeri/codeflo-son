@@ -5,8 +5,8 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --accent: #75A7D4;
-  --primary: #75A7D4;
+  --accent: #008cf1;
+  --primary: #008cf1;
   --primary-foreground: #ffffff;
   --muted-foreground: rgba(255,255,255,0.6);
   --border: rgba(255,255,255,0.1);

@@ -231,9 +231,9 @@ class ParticlesMaterial extends THREE.ShaderMaterial {
 
           float alpha = (1.04 - clamp(vDistance, 0.0, 1.0)) * clamp(smoothstep(-0.5, 0.25, vPosY), 0.0, 1.0) * uOpacity * revealMask * uRevealProgress * sparkleBrightness;
 
-          // Primary color: #5a0e27 = rgb(90, 14, 39) = (0.353, 0.055, 0.153)
+          // Primary color: #008cf1 = rgb(0, 140, 241) = (0.0, 0.549, 0.945)
           // Secondary color: #7193bd = rgb(113, 147, 189) = (0.443, 0.576, 0.741)
-          vec3 primaryColor = vec3(0.353, 0.055, 0.153);
+          vec3 primaryColor = vec3(0.0, 0.549, 0.945);
           vec3 secondaryColor = vec3(0.443, 0.576, 0.741);
 
           // Create color variation based on position and sparkle

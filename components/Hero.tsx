@@ -58,11 +58,11 @@ export default function Hero() {
           <a className="contents max-sm:hidden" href="#why-automation">
             <button
               data-slot="button"
-              className="inline-flex relative uppercase font-mono cursor-pointer items-center has-[>svg]:px-3 justify-center gap-2 whitespace-nowrap font-medium ease-out transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none bg-background text-primary-foreground hover:shadow-[#5a0e27]/80 h-16 px-6 text-base mt-6"
+              className="inline-flex relative uppercase font-mono cursor-pointer items-center has-[>svg]:px-3 justify-center gap-2 whitespace-nowrap font-medium ease-out transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none bg-background text-primary-foreground hover:shadow-[#008cf1]/80 h-16 px-6 text-base mt-6"
               style={{
                 '--poly-roundness': '16px',
                 clipPath: 'polygon(var(--poly-roundness) 0, calc(100% - var(--poly-roundness)) 0, 100% 0, 100% calc(100% - var(--poly-roundness)), calc(100% - var(--poly-roundness)) 100%, 0 100%, 0 calc(100% - var(--poly-roundness)), 0 var(--poly-roundness))',
-                boxShadow: 'inset 0 0 54px 0px #5a0e27'
+                boxShadow: 'inset 0 0 54px 0px #008cf1'
               } as React.CSSProperties}
             >
               Get Started
@@ -73,11 +73,11 @@ export default function Hero() {
           <a className="contents sm:hidden" href="#why-automation">
             <button
               data-slot="button"
-              className="inline-flex relative uppercase font-mono cursor-pointer items-center has-[>svg]:px-3 justify-center gap-2 whitespace-nowrap font-medium ease-out transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none bg-background text-primary-foreground hover:shadow-[#5a0e27]/80 h-14 px-6 text-sm mt-6"
+              className="inline-flex relative uppercase font-mono cursor-pointer items-center has-[>svg]:px-3 justify-center gap-2 whitespace-nowrap font-medium ease-out transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none bg-background text-primary-foreground hover:shadow-[#008cf1]/80 h-14 px-6 text-sm mt-6"
               style={{
                 '--poly-roundness': '16px',
                 clipPath: 'polygon(var(--poly-roundness) 0, calc(100% - var(--poly-roundness)) 0, 100% 0, 100% calc(100% - var(--poly-roundness)), calc(100% - var(--poly-roundness)) 100%, 0 100%, 0 calc(100% - var(--poly-roundness)), 0 var(--poly-roundness))',
-                boxShadow: 'inset 0 0 54px 0px #5a0e27'
+                boxShadow: 'inset 0 0 54px 0px #008cf1'
               } as React.CSSProperties}
             >
               Get Started
@@ -90,7 +90,7 @@ export default function Hero() {
               <motion.div
                 className="bg-background/50 backdrop-blur-sm border border-primary/20 p-6 sm:p-8 rounded-lg hover:border-primary/40 transition-all duration-300"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(117, 167, 212, 0.05) 0%, rgba(90, 14, 39, 0.05) 100%)'
+                  background: 'linear-gradient(135deg, rgba(0, 140, 241, 0.05) 0%, rgba(0, 140, 241, 0.05) 100%)'
                 }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -106,7 +106,7 @@ export default function Hero() {
               <motion.div
                 className="bg-background/50 backdrop-blur-sm border border-primary/20 p-6 sm:p-8 rounded-lg hover:border-primary/40 transition-all duration-300"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(117, 167, 212, 0.05) 0%, rgba(90, 14, 39, 0.05) 100%)'
+                  background: 'linear-gradient(135deg, rgba(0, 140, 241, 0.05) 0%, rgba(0, 140, 241, 0.05) 100%)'
                 }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -122,7 +122,7 @@ export default function Hero() {
               <motion.div
                 className="bg-background/50 backdrop-blur-sm border border-primary/20 p-6 sm:p-8 rounded-lg hover:border-primary/40 transition-all duration-300"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(117, 167, 212, 0.05) 0%, rgba(90, 14, 39, 0.05) 100%)'
+                  background: 'linear-gradient(135deg, rgba(0, 140, 241, 0.05) 0%, rgba(0, 140, 241, 0.05) 100%)'
                 }}
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}

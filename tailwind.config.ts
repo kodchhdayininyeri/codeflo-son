@@ -11,10 +11,10 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#75A7D4",
+        primary: "#008cf1",
         "primary-foreground": "#ffffff",
         border: "rgba(255,255,255,0.1)",
-        accent: "#75A7D4",
+        accent: "#008cf1",
         muted: {
           DEFAULT: "rgba(255,255,255,0.05)",
           foreground: "rgba(255,255,255,0.6)",
@@ -23,7 +23,7 @@ const config: Config = {
           DEFAULT: "#ef4444",
           foreground: "#ffffff",
         },
-        ring: "#75A7D4",
+        ring: "#008cf1",
       },
       fontFamily: {
         sentient: ['Sentient', 'sans-serif'],
