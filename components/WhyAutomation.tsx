@@ -5,7 +5,7 @@ export default function WhyAutomation() {
     <section id="why-automation" style={{ background: 'var(--background)', padding: '6rem 1.5rem 14rem 1.5rem', scrollMarginTop: '100px' }}>
       <div className="container">
         <ScrollReveal className="animate-fade-in-up">
-          <h2 style={{ textAlign: 'center', marginBottom: '1rem', fontSize: 'clamp(2rem, 4vw, 3rem)' }}>Why do you need automation?</h2>
+          <h2 className="text-primary" style={{ textAlign: 'center', marginBottom: '1rem', fontSize: 'clamp(2rem, 4vw, 3rem)' }}>Why do you need automation?</h2>
           <p className="text-lg" style={{ textAlign: 'center', color: 'var(--muted-foreground)', marginBottom: '4rem' }}>
             Smart businesses do repetitive tasks once, not everyday
           </p>

@@ -32,13 +32,12 @@ export default function WhoAreWe() {
         </div>
 
         <ScrollReveal className="animate-fade-in-up-delay">
-          <div className="mt-16 bg-gradient-to-br from-primary/10 to-transparent rounded-2xl p-12 text-center">
+          <div className="mt-16 rounded-2xl text-center relative" style={{ height: '500px', maxWidth: '48rem', margin: '0 auto' }}>
             <Image
-              src="/workflow.avif"
+              src="/Generated Image November 23, 2025 - 9_03PM (1).jpeg"
               alt="Workflow Automation Process"
-              width={800}
-              height={400}
-              className="mx-auto w-full max-w-3xl rounded-lg"
+              fill
+              className="rounded-lg object-contain"
             />
           </div>
         </ScrollReveal>

@@ -52,7 +52,7 @@ export default function SolutionsPage() {
                     overflow: 'hidden'
                   }}>
                     <Image
-                      src="https://images.unsplash.com/photo-1516383274235-5f42d6c6426d?w=800&q=80&auto=format&fit=crop"
+                      src="/Generated Image November 24, 2025 - 1_22AM.jpeg"
                       alt="Graph illustrating lead generation increase over time with AI automation tools."
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -94,7 +94,7 @@ export default function SolutionsPage() {
                     overflow: 'hidden'
                   }}>
                     <Image
-                      src="https://images.unsplash.com/photo-1684369175833-4b445ad6bfb5?w=800&q=80&auto=format&fit=crop"
+                      src="/solutions-alt.png"
                       alt="A sleek dashboard showing automated workflow processes with AI agents."
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -178,11 +178,11 @@ export default function SolutionsPage() {
                 overflow: 'hidden'
               }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1542744094-24638eff58bb?w=400&q=80&auto=format&fit=crop"
+                  src="/galeri/Screenshot 2025-11-24 at 14.43.04 (1) (1) (1).png"
                   alt="man writing on white board"
                   fill
                   sizes="(max-width: 768px) 100vw, 25vw"
-                  className="object-cover"
+                  className="object-fill"
                 />
               </div>
 
@@ -195,7 +195,7 @@ export default function SolutionsPage() {
                 overflow: 'hidden'
               }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1633311905139-7b6088a69e33?w=800&q=80&auto=format&fit=crop"
+                  src="/galeri/orta.png"
                   alt="a yellow letter sitting on top of a black floor"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -212,7 +212,7 @@ export default function SolutionsPage() {
                 overflow: 'hidden'
               }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&q=80&auto=format&fit=crop"
+                  src="/galeri/Generated Image November 23, 2025 - 9_28PM.jpeg"
                   alt="person using MacBook Pro"
                   fill
                   sizes="(max-width: 768px) 100vw, 25vw"
@@ -229,11 +229,11 @@ export default function SolutionsPage() {
                 overflow: 'hidden'
               }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1574717024652-e5e15edc033b?w=400&q=80&auto=format&fit=crop"
+                  src="/galeri/Screenshot 2025-11-24 at 14.47.58 (1) (1) (4).png"
                   alt="black laptop computer"
                   fill
                   sizes="(max-width: 768px) 100vw, 25vw"
-                  className="object-cover"
+                  className="object-fill"
                 />
               </div>
 
@@ -246,7 +246,7 @@ export default function SolutionsPage() {
                 overflow: 'hidden'
               }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1753715613388-7e03410b1dce?w=400&q=80&auto=format&fit=crop"
+                  src="/galeri/sagalt.png"
                   alt="Someone is drawing on a tablet at their desk."
                   fill
                   sizes="(max-width: 768px) 100vw, 25vw"
@@ -259,11 +259,11 @@ export default function SolutionsPage() {
             {/* Gallery Grid - Mobile */}
             <div className="md:hidden grid grid-cols-1 gap-4">
               {[
-                { src: 'photo-1542744094-24638eff58bb', alt: 'man writing on white board' },
-                { src: 'photo-1633311905139-7b6088a69e33', alt: 'a yellow letter sitting on top of a black floor' },
-                { src: 'photo-1486312338219-ce68d2c6f44d', alt: 'person using MacBook Pro' },
-                { src: 'photo-1574717024652-e5e15edc033b', alt: 'black laptop computer' },
-                { src: 'photo-1753715613388-7e03410b1dce', alt: 'Someone is drawing on a tablet at their desk.' }
+                { src: '/galeri/Screenshot 2025-11-24 at 14.43.04 (1) (1) (1).png', alt: 'man writing on white board' },
+                { src: '/galeri/orta.png', alt: 'a yellow letter sitting on top of a black floor' },
+                { src: '/galeri/Generated Image November 23, 2025 - 9_28PM.jpeg', alt: 'person using MacBook Pro' },
+                { src: '/galeri/Screenshot 2025-11-24 at 14.47.58 (1) (1) (4).png', alt: 'black laptop computer' },
+                { src: '/galeri/sagalt.png', alt: 'Someone is drawing on a tablet at their desk.' }
               ].map((image, index) => (
                 <ScrollReveal key={index}>
                   <div style={{
@@ -273,7 +273,7 @@ export default function SolutionsPage() {
                     overflow: 'hidden'
                   }}>
                     <Image
-                      src={`https://images.unsplash.com/${image.src}?w=400&q=80&auto=format&fit=crop`}
+                      src={image.src}
                       alt={image.alt}
                       fill
                       className="object-cover"

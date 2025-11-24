@@ -50,7 +50,7 @@ export default function ServicesPage() {
                 overflow: 'hidden'
               }}>
                 <Image
-                  src="https://images.unsplash.com/photo-1596897818476-aaeb420b0fa9?w=800&q=80&auto=format&fit=crop"
+                  src="/Generated image 1.png"
                   alt="A dynamic London cityscape with digital network connections overlay illustrating automation."
                   fill
                   className="object-cover"
@@ -153,33 +153,31 @@ export default function ServicesPage() {
           <div className="mb-20">
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <ScrollReveal className="animate-fade-in-left">
-                <div style={{
+                <div className="h-[275px] md:h-[360px]" style={{
                   position: 'relative',
-                  height: '360px',
                   borderRadius: '20px',
                   overflow: 'hidden'
                 }}>
                   <Image
-                    src="https://images.unsplash.com/photo-1571677246347-5040036b95cc?w=800&q=80&auto=format&fit=crop"
+                    src="/Generated Image November 24, 2025 - 3_10PM (2) (1).jpg"
                     alt="A sleek dashboard showing automated workflow processes in action."
                     fill
-                    className="object-cover"
+                    className="object-fill"
                   />
                 </div>
               </ScrollReveal>
 
               <ScrollReveal className="animate-fade-in-right">
-                <div style={{
+                <div className="h-[275px] md:h-[360px]" style={{
                   position: 'relative',
-                  height: '360px',
                   borderRadius: '20px',
                   overflow: 'hidden'
                 }}>
                   <Image
-                    src="https://images.unsplash.com/photo-1684369175833-4b445ad6bfb5?w=800&q=80&auto=format&fit=crop"
+                    src="/Generated Image November 24, 2025 - 4_25PM (1) (3) (1).jpeg"
                     alt="AI agent interacting with multiple business tools seamlessly."
                     fill
-                    className="object-cover"
+                    className="object-fill"
                   />
                 </div>
               </ScrollReveal>
@@ -209,33 +207,31 @@ export default function ServicesPage() {
           <div>
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <ScrollReveal className="animate-fade-in-left">
-                <div style={{
+                <div className="h-[275px] md:h-[360px]" style={{
                   position: 'relative',
-                  height: '360px',
                   borderRadius: '20px',
                   overflow: 'hidden'
                 }}>
                   <Image
-                    src="https://images.unsplash.com/photo-1686061594225-3e92c0cd51b0?w=800&q=80&auto=format&fit=crop"
+                    src="/Generated Image November 23, 2025 - 11_30PM.jpeg"
                     alt="Graph illustrating increased revenue after automation."
                     fill
-                    className="object-cover"
+                    className="object-fill"
                   />
                 </div>
               </ScrollReveal>
 
               <ScrollReveal className="animate-fade-in-right">
-                <div style={{
+                <div className="h-[275px] md:h-[360px]" style={{
                   position: 'relative',
-                  height: '360px',
                   borderRadius: '20px',
                   overflow: 'hidden'
                 }}>
                   <Image
-                    src="https://images.unsplash.com/photo-1531497258014-b5736f376b1b?w=800&q=80&auto=format&fit=crop"
+                    src="/Generated Image November 23, 2025 - 8_33PM.jpeg"
                     alt="Team collaborating over AI-powered workflow designs."
                     fill
-                    className="object-cover"
+                    className="object-fill"
                   />
                 </div>
               </ScrollReveal>
