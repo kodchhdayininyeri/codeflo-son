@@ -216,7 +216,7 @@ export default function SolutionsPage() {
                   alt="person using MacBook Pro"
                   fill
                   sizes="(max-width: 768px) 100vw, 25vw"
-                  className="object-cover"
+                  className="object-fill"
                 />
               </div>
 
