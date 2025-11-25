@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function WhoAreWe() {
   return (
-    <section id="who-are-we" className="section py-20">
+    <section id="who-are-we" className="section pt-20 max-md:pb-14 md:pb-20">
       <div className="container mx-auto px-4 sm:px-8">
         <ScrollReveal className="animate-fade-in-up">
           <div className="text-center mb-12">
@@ -48,7 +48,7 @@ export default function WhoAreWe() {
                     fill
                     quality={100}
                     className="rounded-lg object-contain md:hidden"
-                    style={{ transform: 'scale(1.1) scaleY(1.10)' }}
+                    style={{ transform: 'scale(1.22)' }}
                   />
                   {/* Desktop */}
                   <Image
