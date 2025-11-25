@@ -51,7 +51,8 @@ export default function ContactForm() {
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
       padding: '30px',
       borderRadius: '10px',
-      border: '1px solid rgba(255, 255, 255, 0.1)'
+      border: '1px solid rgba(255, 255, 255, 0.1)',
+      height: '100%'
     }}>
       <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
         <div>

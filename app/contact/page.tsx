@@ -17,128 +17,133 @@ export default function ContactPage() {
           minHeight: '563px'
         }}>
           <div style={{ maxWidth: '1224px', margin: '0 auto' }}>
-            <div className="grid md:grid-cols-2 gap-12 items-end">
+            <div className="grid md:grid-cols-2 gap-12 items-stretch">
               {/* Left: Heading and Contact Info */}
-              <div>
+              <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 {/* Guarantee Section */}
-                <ScrollReveal>
-                  <div style={{ marginBottom: '64px' }}>
-                    {/* Icon */}
-                    <div style={{
-                      width: '45px',
-                      height: '45px',
-                      marginBottom: '16px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'flex-start'
-                    }}>
-                      <svg width="38" height="42" viewBox="0 0 50 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        {/* Shield outline */}
-                        <path d="M25 4 L45 10 L45 26 C45 38 25 52 25 52 C25 52 5 38 5 26 L5 10 Z" stroke="#008cf1" strokeWidth="3" fill="none" strokeLinejoin="round"/>
-                        {/* Checkmark */}
-                        <path d="M16 28 L21 33 L34 20" stroke="#008cf1" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-                      </svg>
+                <div style={{ marginBottom: '89px' }}>
+                  <ScrollReveal>
+                    <div>
+                      {/* Icon */}
+                      <div style={{
+                        width: '45px',
+                        height: '45px',
+                        marginBottom: '16px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start'
+                      }}>
+                        <svg width="38" height="42" viewBox="0 0 50 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          {/* Shield outline */}
+                          <path d="M25 4 L45 10 L45 26 C45 38 25 52 25 52 C25 52 5 38 5 26 L5 10 Z" stroke="#008cf1" strokeWidth="3" fill="none" strokeLinejoin="round"/>
+                          {/* Checkmark */}
+                          <path d="M16 28 L21 33 L34 20" stroke="#008cf1" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                        </svg>
+                      </div>
+
+                      <h3 style={{
+                        fontSize: 'clamp(32px, 5vw, 48px)',
+                        fontWeight: 600,
+                        marginBottom: '0px',
+                        color: '#ffffff',
+                        lineHeight: 1.2
+                      }}>
+                        30-Day No-Risk
+                      </h3>
+                      <h3 style={{
+                        fontSize: 'clamp(32px, 5vw, 48px)',
+                        fontWeight: 600,
+                        marginBottom: '12px',
+                        color: 'rgb(120, 120, 120)',
+                        lineHeight: 1.2
+                      }}>
+                        Guarantee
+                      </h3>
+
+                      <p style={{
+                        fontSize: '16px',
+                        lineHeight: 1.6,
+                        color: 'rgb(200, 200, 200)',
+                        margin: 0
+                      }}>
+                        We build AI voice agents, chatbots, workflow automation and lead generation optimization to generate more revenue, increase productivity and overall make life easier for you. If you feel differently about the results, we offer a full refund.
+                      </p>
                     </div>
+                  </ScrollReveal>
+                </div>
 
-                    <h3 style={{
+                {/* Contact Section */}
+                <div>
+                  <ScrollReveal>
+                    <h1 style={{
                       fontSize: 'clamp(32px, 5vw, 48px)',
                       fontWeight: 600,
-                      marginBottom: '0px',
-                      color: '#ffffff',
-                      lineHeight: 1.2
+                      lineHeight: 1.2,
+                      marginBottom: '8px',
+                      color: '#ffffff'
                     }}>
-                      30-Day No-Risk
-                    </h3>
-                    <h3 style={{
-                      fontSize: 'clamp(32px, 5vw, 48px)',
-                      fontWeight: 600,
-                      marginBottom: '12px',
-                      color: 'rgb(120, 120, 120)',
-                      lineHeight: 1.2
-                    }}>
-                      Guarantee
-                    </h3>
+                      Get in Touch
+                    </h1>
+                  </ScrollReveal>
 
+                  <ScrollReveal>
                     <p style={{
                       fontSize: '16px',
-                      lineHeight: 1.6,
                       color: 'rgb(200, 200, 200)',
-                      margin: 0
+                      marginBottom: '16px',
+                      lineHeight: 1.6
                     }}>
-                      We build AI voice agents, chatbots, workflow automation and lead generation optimization to generate more revenue, increase productivity and overall make life easier for you. If you feel differently about the results, we offer a full refund.
+                      Reach out to codeflo to start automating your workflow and boosting productivity.
                     </p>
+                  </ScrollReveal>
+
+                  {/* Contact Information */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <ScrollReveal>
+                      <div>
+                        <h6 style={{
+                          fontSize: '28px',
+                          fontWeight: 'bold',
+                          color: '#ffffff',
+                          marginBottom: '4px'
+                        }}>
+                          Phone
+                        </h6>
+                        <a href="tel:+447721929136" style={{
+                          fontSize: '18px',
+                          color: 'rgb(200, 200, 200)',
+                          textDecoration: 'none'
+                        }}>
+                          +44 772 192 9136
+                        </a>
+                      </div>
+                    </ScrollReveal>
+
+                    <ScrollReveal>
+                      <div>
+                        <h6 style={{
+                          fontSize: '28px',
+                          fontWeight: 'bold',
+                          color: '#ffffff',
+                          marginBottom: '4px'
+                        }}>
+                          Email
+                        </h6>
+                        <a href="mailto:info@codeflo.tech" style={{
+                          fontSize: '18px',
+                          color: 'rgb(200, 200, 200)',
+                          textDecoration: 'none'
+                        }}>
+                          info@codeflo.tech
+                        </a>
+                      </div>
+                    </ScrollReveal>
                   </div>
-                </ScrollReveal>
-
-                <ScrollReveal>
-                  <h1 style={{
-                    fontSize: 'clamp(32px, 5vw, 48px)',
-                    fontWeight: 600,
-                    lineHeight: 1.2,
-                    marginBottom: '8px',
-                    color: '#ffffff'
-                  }}>
-                    Get in Touch
-                  </h1>
-                </ScrollReveal>
-
-                <ScrollReveal>
-                  <p style={{
-                    fontSize: '16px',
-                    color: 'rgb(200, 200, 200)',
-                    marginBottom: '16px',
-                    lineHeight: 1.6
-                  }}>
-                    Reach out to codeflo to start automating your workflow and boosting productivity.
-                  </p>
-                </ScrollReveal>
-
-                {/* Contact Information */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                  <ScrollReveal>
-                    <div>
-                      <h6 style={{
-                        fontSize: '28px',
-                        fontWeight: 'bold',
-                        color: '#ffffff',
-                        marginBottom: '4px'
-                      }}>
-                        Phone
-                      </h6>
-                      <a href="tel:+447721929136" style={{
-                        fontSize: '18px',
-                        color: 'rgb(200, 200, 200)',
-                        textDecoration: 'none'
-                      }}>
-                        +44 772 192 9136
-                      </a>
-                    </div>
-                  </ScrollReveal>
-
-                  <ScrollReveal>
-                    <div>
-                      <h6 style={{
-                        fontSize: '28px',
-                        fontWeight: 'bold',
-                        color: '#ffffff',
-                        marginBottom: '4px'
-                      }}>
-                        Email
-                      </h6>
-                      <a href="mailto:info@codeflo.tech" style={{
-                        fontSize: '18px',
-                        color: 'rgb(200, 200, 200)',
-                        textDecoration: 'none'
-                      }}>
-                        info@codeflo.tech
-                      </a>
-                    </div>
-                  </ScrollReveal>
                 </div>
               </div>
 
               {/* Right: Contact Form */}
-              <ScrollReveal>
+              <ScrollReveal className="h-full">
                 <ContactForm />
               </ScrollReveal>
             </div>
