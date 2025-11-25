@@ -94,11 +94,11 @@ export default function SolutionsPage() {
                     overflow: 'hidden'
                   }}>
                     <Image
-                      src="/solutions-alt.png"
+                      src="/Generated Image November 24, 2025 - 4_47PM.jpeg"
                       alt="A sleek dashboard showing automated workflow processes with AI agents."
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover"
+                      className="object-fill"
                     />
                   </div>
                 </ScrollReveal>
@@ -134,7 +134,7 @@ export default function SolutionsPage() {
           padding: '80px 16px',
           borderTop: '1px solid rgba(255,255,255,0.1)'
         }}>
-          <div style={{ maxWidth: '1224px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
             {/* Gallery Heading */}
             <ScrollReveal>
               <h3 style={{
@@ -164,31 +164,31 @@ export default function SolutionsPage() {
             <div className="hidden md:block desktop-gallery" style={{ minHeight: '692px' }}>
               <div className="gallery-grid" style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(12, 1fr)',
+                gridTemplateColumns: 'repeat(36, 1fr)',
                 gridTemplateRows: 'repeat(4, 164px)',
                 gap: '12px',
                 height: '100%'
               }}>
-              {/* Image 1 - Top Left (297×320) */}
+              {/* Image 1 - Top Left */}
               <div style={{
-                gridColumn: '1 / span 3',
+                gridColumn: '1 / 12',
                 gridRow: '1 / span 2',
                 position: 'relative',
                 borderRadius: '16px',
                 overflow: 'hidden'
               }}>
                 <Image
-                  src="/galeri/Screenshot 2025-11-24 at 14.43.04 (1) (1) (1).png"
+                  src="/galeri/Screenshot 2025-11-25 at 14.04.58 (1).png"
                   alt="man writing on white board"
                   fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
+                  sizes="(max-width: 768px) 100vw, 31vw"
                   className="object-fill"
                 />
               </div>
 
-              {/* Image 2 - Center Large (606×656) - Full Height */}
+              {/* Image 2 - Center - Full Height */}
               <div style={{
-                gridColumn: '4 / span 6',
+                gridColumn: '12 / 26',
                 gridRow: '1 / span 4',
                 position: 'relative',
                 borderRadius: '16px',
@@ -198,48 +198,48 @@ export default function SolutionsPage() {
                   src="/galeri/orta.png"
                   alt="a yellow letter sitting on top of a black floor"
                   fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
+                  sizes="(max-width: 768px) 100vw, 39vw"
                   className="object-cover"
                 />
               </div>
 
-              {/* Image 3 - Top Right (297×320) */}
+              {/* Image 3 - Top Right */}
               <div style={{
-                gridColumn: '10 / span 3',
+                gridColumn: '26 / 37',
                 gridRow: '1 / span 2',
                 position: 'relative',
                 borderRadius: '16px',
                 overflow: 'hidden'
               }}>
                 <Image
-                  src="/galeri/Generated Image November 23, 2025 - 9_28PM.jpeg"
+                  src="/galeri/Gemini_Generated_Image_26nle826nle826nl (1).png"
                   alt="person using MacBook Pro"
                   fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
+                  sizes="(max-width: 768px) 100vw, 31vw"
                   className="object-fill"
                 />
               </div>
 
-              {/* Image 4 - Bottom Left (297×320) */}
+              {/* Image 4 - Bottom Left */}
               <div style={{
-                gridColumn: '1 / span 3',
+                gridColumn: '1 / 12',
                 gridRow: '3 / span 2',
                 position: 'relative',
                 borderRadius: '16px',
                 overflow: 'hidden'
               }}>
                 <Image
-                  src="/galeri/Screenshot 2025-11-24 at 14.47.58 (1) (1) (4).png"
+                  src="/galeri/Screenshot 2025-11-25 at 14.44.20.png"
                   alt="black laptop computer"
                   fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
+                  sizes="(max-width: 768px) 100vw, 31vw"
                   className="object-fill"
                 />
               </div>
 
-              {/* Image 5 - Bottom Right (297×320) */}
+              {/* Image 5 - Bottom Right */}
               <div style={{
-                gridColumn: '10 / span 3',
+                gridColumn: '26 / 37',
                 gridRow: '3 / span 2',
                 position: 'relative',
                 borderRadius: '16px',
@@ -249,7 +249,7 @@ export default function SolutionsPage() {
                   src="/galeri/sagalt.png"
                   alt="Someone is drawing on a tablet at their desk."
                   fill
-                  sizes="(max-width: 768px) 100vw, 25vw"
+                  sizes="(max-width: 768px) 100vw, 31vw"
                   className="object-cover"
                 />
               </div>
@@ -259,11 +259,11 @@ export default function SolutionsPage() {
             {/* Gallery Grid - Mobile */}
             <div className="md:hidden grid grid-cols-1 gap-4">
               {[
-                { src: '/galeri/Screenshot 2025-11-24 at 14.43.04 (1) (1) (1).png', alt: 'man writing on white board' },
-                { src: '/galeri/orta.png', alt: 'a yellow letter sitting on top of a black floor' },
-                { src: '/galeri/Generated Image November 23, 2025 - 9_28PM.jpeg', alt: 'person using MacBook Pro' },
-                { src: '/galeri/Screenshot 2025-11-24 at 14.47.58 (1) (1) (4).png', alt: 'black laptop computer' },
-                { src: '/galeri/sagalt.png', alt: 'Someone is drawing on a tablet at their desk.' }
+                { src: '/galeri/Screenshot 2025-11-25 at 13.10.54.png', alt: 'man writing on white board', objectFit: 'object-fill' },
+                { src: '/galeri/orta.png', alt: 'a yellow letter sitting on top of a black floor', objectFit: 'object-cover' },
+                { src: '/galeri/Gemini_Generated_Image_26nle826nle826nl (1).png', alt: 'person using MacBook Pro', objectFit: 'object-fill' },
+                { src: '/galeri/Screenshot 2025-11-25 at 14.44.20.png', alt: 'black laptop computer', objectFit: 'object-fill' },
+                { src: '/galeri/sagalt.png', alt: 'Someone is drawing on a tablet at their desk.', objectFit: 'object-cover' }
               ].map((image, index) => (
                 <ScrollReveal key={index}>
                   <div style={{
@@ -276,7 +276,7 @@ export default function SolutionsPage() {
                       src={image.src}
                       alt={image.alt}
                       fill
-                      className="object-cover"
+                      className={image.objectFit}
                     />
                   </div>
                 </ScrollReveal>

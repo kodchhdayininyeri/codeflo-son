@@ -53,7 +53,7 @@ export default function ServicesPage() {
                   src="/Generated image 1.png"
                   alt="A dynamic London cityscape with digital network connections overlay illustrating automation."
                   fill
-                  className="object-cover"
+                  className="md:object-cover max-md:object-fill"
                   priority
                 />
               </div>
