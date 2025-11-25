@@ -87,9 +87,8 @@ export default function SolutionsPage() {
               {/* Card 2: AI Integration */}
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <ScrollReveal className="animate-fade-in-left">
-                  <div style={{
+                  <div className="h-[280px] md:h-[360px]" style={{
                     position: 'relative',
-                    height: '360px',
                     borderRadius: '20px',
                     overflow: 'hidden'
                   }}>
