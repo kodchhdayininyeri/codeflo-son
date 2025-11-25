@@ -138,10 +138,8 @@ export default function ContactPage() {
               </div>
 
               {/* Right: Contact Form */}
-              <ScrollReveal style={{ display: 'flex', height: '100%' }}>
-                <div style={{ width: '100%', display: 'flex' }}>
-                  <ContactForm />
-                </div>
+              <ScrollReveal>
+                <ContactForm />
               </ScrollReveal>
             </div>
           </div>
