@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 export default function WhoAreWe() {
   return (
-    <section id="who-are-we" className="section pt-20 max-md:pb-14 md:pb-20">
+    <section id="who-are-we" className="section pt-20 max-md:pb-10 md:pb-20">
       <div className="container mx-auto px-4 sm:px-8">
         <ScrollReveal className="animate-fade-in-up">
           <div className="text-center mb-12">

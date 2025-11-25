@@ -13,19 +13,69 @@ export default function ContactPage() {
         {/* Section 1: Get in Touch */}
         <section style={{
           backgroundColor: '#000000',
-          padding: '140px 16px 16px 16px',
+          padding: '140px 16px 80px 16px',
           minHeight: '563px'
         }}>
           <div style={{ maxWidth: '1224px', margin: '0 auto' }}>
-            <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div className="grid md:grid-cols-2 gap-12 items-end">
               {/* Left: Heading and Contact Info */}
               <div>
+                {/* Guarantee Section */}
+                <ScrollReveal>
+                  <div style={{ marginBottom: '32px' }}>
+                    {/* Icon */}
+                    <div style={{
+                      width: '45px',
+                      height: '45px',
+                      marginBottom: '16px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'flex-start'
+                    }}>
+                      <svg width="38" height="42" viewBox="0 0 50 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        {/* Shield outline */}
+                        <path d="M25 4 L45 10 L45 26 C45 38 25 52 25 52 C25 52 5 38 5 26 L5 10 Z" stroke="#008cf1" strokeWidth="3" fill="none" strokeLinejoin="round"/>
+                        {/* Checkmark */}
+                        <path d="M16 28 L21 33 L34 20" stroke="#008cf1" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                      </svg>
+                    </div>
+
+                    <h3 style={{
+                      fontSize: 'clamp(32px, 5vw, 48px)',
+                      fontWeight: 600,
+                      marginBottom: '0px',
+                      color: '#ffffff',
+                      lineHeight: 1.2
+                    }}>
+                      30-Day No-Risk
+                    </h3>
+                    <h3 style={{
+                      fontSize: 'clamp(32px, 5vw, 48px)',
+                      fontWeight: 600,
+                      marginBottom: '12px',
+                      color: 'rgb(120, 120, 120)',
+                      lineHeight: 1.2
+                    }}>
+                      Guarantee
+                    </h3>
+
+                    <p style={{
+                      fontSize: '16px',
+                      lineHeight: 1.6,
+                      color: 'rgb(200, 200, 200)',
+                      margin: 0
+                    }}>
+                      We build AI voice agents, chatbots, workflow automation and lead generation optimization to generate more revenue, increase productivity and overall make life easier for you. If you feel differently about results, we offer full refund.
+                    </p>
+                  </div>
+                </ScrollReveal>
+
                 <ScrollReveal>
                   <h1 style={{
-                    fontSize: 'clamp(40px, 5vw, 64px)',
+                    fontSize: 'clamp(32px, 5vw, 48px)',
                     fontWeight: 600,
-                    lineHeight: 1.3,
-                    marginBottom: '24px',
+                    lineHeight: 1.2,
+                    marginBottom: '8px',
                     color: '#ffffff'
                   }}>
                     Get in Touch
@@ -34,24 +84,24 @@ export default function ContactPage() {
 
                 <ScrollReveal>
                   <p style={{
-                    fontSize: '20px',
+                    fontSize: '16px',
                     color: 'rgb(200, 200, 200)',
-                    marginBottom: '48px',
-                    lineHeight: 1.5
+                    marginBottom: '16px',
+                    lineHeight: 1.6
                   }}>
                     Reach out to codeflo to start automating your workflow and boosting productivity.
                   </p>
                 </ScrollReveal>
 
                 {/* Contact Information */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <ScrollReveal>
                     <div>
                       <h6 style={{
                         fontSize: '28px',
                         fontWeight: 'bold',
                         color: '#ffffff',
-                        marginBottom: '8px'
+                        marginBottom: '4px'
                       }}>
                         Phone
                       </h6>
@@ -71,7 +121,7 @@ export default function ContactPage() {
                         fontSize: '28px',
                         fontWeight: 'bold',
                         color: '#ffffff',
-                        marginBottom: '8px'
+                        marginBottom: '4px'
                       }}>
                         Email
                       </h6>
@@ -88,8 +138,10 @@ export default function ContactPage() {
               </div>
 
               {/* Right: Contact Form */}
-              <ScrollReveal>
-                <ContactForm />
+              <ScrollReveal style={{ display: 'flex', height: '100%' }}>
+                <div style={{ width: '100%', display: 'flex' }}>
+                  <ContactForm />
+                </div>
               </ScrollReveal>
             </div>
           </div>

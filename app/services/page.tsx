@@ -259,7 +259,67 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Block 3: FAQ */}
+      {/* Block 3: Guarantee */}
+      <section style={{ backgroundColor: '#000000', padding: '80px 16px' }}>
+        <div style={{ maxWidth: '1224px', margin: '0 auto' }}>
+          <ScrollReveal className="animate-fade-in-up">
+            <div style={{
+              maxWidth: '700px',
+              margin: '0 auto',
+              textAlign: 'left',
+              padding: '0 20px'
+            }}>
+              {/* Icon */}
+              <div style={{
+                width: '60px',
+                height: '60px',
+                marginBottom: '28px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <svg width="50" height="56" viewBox="0 0 50 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Shield outline */}
+                  <path d="M25 4 L45 10 L45 26 C45 38 25 52 25 52 C25 52 5 38 5 26 L5 10 Z" stroke="#008cf1" strokeWidth="3" fill="none" strokeLinejoin="round"/>
+                  {/* Checkmark */}
+                  <path d="M16 28 L21 33 L34 20" stroke="#008cf1" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                </svg>
+              </div>
+
+              <h3 style={{
+                fontSize: 'clamp(32px, 5vw, 48px)',
+                fontWeight: 600,
+                marginBottom: '8px',
+                color: '#ffffff',
+                lineHeight: 1.2
+              }}>
+                30-Day No-Risk
+              </h3>
+              <h3 style={{
+                fontSize: 'clamp(32px, 5vw, 48px)',
+                fontWeight: 600,
+                marginBottom: '32px',
+                color: 'rgb(120, 120, 120)',
+                lineHeight: 1.2
+              }}>
+                Guarantee
+              </h3>
+
+              <p style={{
+                fontSize: '16px',
+                lineHeight: 1.6,
+                color: 'rgb(200, 200, 200)',
+                margin: 0,
+                maxWidth: '700px'
+              }}>
+                We build AI voice agents, chatbots, workflow automation and lead generation optimization to generate more revenue, increase productivity and overall make life easier for you. If you feel differently about results, we offer full refund.
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* Block 4: FAQ */}
       <section style={{ backgroundColor: '#000000', padding: '80px 16px' }}>
         <div style={{ maxWidth: '1224px', margin: '0 auto' }}>
           <ScrollReveal className="animate-fade-in-up">
