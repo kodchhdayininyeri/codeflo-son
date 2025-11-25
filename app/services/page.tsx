@@ -312,7 +312,7 @@ export default function ServicesPage() {
                 margin: 0,
                 maxWidth: '700px'
               }}>
-                We build AI voice agents, chatbots, workflow automation and lead generation optimization to generate more revenue, increase productivity and overall make life easier for you. If you feel differently about results, we offer full refund.
+                We build AI voice agents, chatbots, workflow automation and lead generation optimization to generate more revenue, increase productivity and overall make life easier for you. If you feel differently about the results, we offer a full refund.
               </p>
             </div>
           </ScrollReveal>

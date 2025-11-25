@@ -22,7 +22,7 @@ export default function ContactPage() {
               <div>
                 {/* Guarantee Section */}
                 <ScrollReveal>
-                  <div style={{ marginBottom: '32px' }}>
+                  <div style={{ marginBottom: '64px' }}>
                     {/* Icon */}
                     <div style={{
                       width: '45px',
@@ -65,7 +65,7 @@ export default function ContactPage() {
                       color: 'rgb(200, 200, 200)',
                       margin: 0
                     }}>
-                      We build AI voice agents, chatbots, workflow automation and lead generation optimization to generate more revenue, increase productivity and overall make life easier for you. If you feel differently about results, we offer full refund.
+                      We build AI voice agents, chatbots, workflow automation and lead generation optimization to generate more revenue, increase productivity and overall make life easier for you. If you feel differently about the results, we offer a full refund.
                     </p>
                   </div>
                 </ScrollReveal>
@@ -94,7 +94,7 @@ export default function ContactPage() {
                 </ScrollReveal>
 
                 {/* Contact Information */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
                   <ScrollReveal>
                     <div>
                       <h6 style={{
