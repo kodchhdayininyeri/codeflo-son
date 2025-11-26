@@ -80,8 +80,7 @@ export async function POST(request: Request) {
       { message: 'Subscription successful' },
       { status: 200 }
     )
-  } catch (error) {
-    console.error('Newsletter subscription error:', error)
+  } catch {
     return NextResponse.json(
       { error: 'Failed to subscribe. Please try again.' },
       { status: 500 }

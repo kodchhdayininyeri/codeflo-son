@@ -95,7 +95,8 @@ export default function ContactNewsletter() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full py-3 px-6 bg-gray-800 text-white rounded-full hover:bg-gray-700 transition-all font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-3 px-6 bg-black text-white rounded-full hover:opacity-90 transition-all font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ boxShadow: 'inset 0 0 54px 0px #008cf1' }}
                 >
                   {status === 'loading' ? 'Sending...' : 'Send'}
                 </button>
@@ -105,7 +106,7 @@ export default function ContactNewsletter() {
         </div>
 
         <ScrollReveal className="animate-fade-in-up-delay">
-          <div className="text-center mt-20 pt-8 border-t border-gray-700">
+          <div className="text-center mt-3 pt-2 border-t border-gray-700">
             <p className="text-gray-500 text-sm">
               © 2024 CodeFlo. All rights reserved.
             </p>

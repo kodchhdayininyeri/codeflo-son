@@ -7,14 +7,13 @@ import { EffectComposer } from '@react-three/postprocessing'
 import { Effect } from 'postprocessing'
 import * as THREE from 'three'
 
-// Debug logging utility
-const LOG_PREFIX = '[WebGL-CodeFlo]'
+// Debug logging utility (disabled for production)
 const log = {
-  info: (...args: unknown[]) => console.log(`${LOG_PREFIX} ℹ️`, ...args),
-  success: (...args: unknown[]) => console.log(`${LOG_PREFIX} ✅`, ...args),
-  warn: (...args: unknown[]) => console.warn(`${LOG_PREFIX} ⚠️`, ...args),
-  error: (...args: unknown[]) => console.error(`${LOG_PREFIX} ❌`, ...args),
-  perf: (...args: unknown[]) => console.log(`${LOG_PREFIX} ⚡`, ...args),
+  info: () => {},
+  success: () => {},
+  warn: () => {},
+  error: () => {},
+  perf: () => {},
 }
 
 // Periodic noise function - EXACT from original

@@ -12,8 +12,6 @@ interface State {
   errorInfo: React.ErrorInfo | null
 }
 
-const ERROR_LOG = '[WebGL-ErrorBoundary]'
-
 class WebGLErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
@@ -25,7 +23,6 @@ class WebGLErrorBoundary extends Component<Props, State> {
   }
 
   static getDerivedStateFromError(error: Error): State {
-    console.error(`${ERROR_LOG} ❌ Error caught:`, error)
     return {
       hasError: true,
       error,
@@ -34,24 +31,14 @@ class WebGLErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error(`${ERROR_LOG} ❌❌❌ CRITICAL ERROR ❌❌❌`)
-    console.error(`${ERROR_LOG} Error:`, error)
-    console.error(`${ERROR_LOG} Error message:`, error.message)
-    console.error(`${ERROR_LOG} Error stack:`, error.stack)
-    console.error(`${ERROR_LOG} Component stack:`, errorInfo.componentStack)
-
     this.setState({
       error,
       errorInfo
     })
-
-    // Log to external service (Sentry, LogRocket, etc.)
-    // Example: logErrorToService(error, errorInfo)
   }
 
   render() {
     if (this.state.hasError) {
-      console.warn(`${ERROR_LOG} ⚠️  Rendering fallback UI`)
 
       return (
         <div className="absolute inset-0 bg-gradient-to-br from-red-950/20 via-black to-black flex items-center justify-center">
