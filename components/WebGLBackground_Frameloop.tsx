@@ -8,14 +8,15 @@ import { Effect } from 'postprocessing'
 import * as THREE from 'three'
 
 // Debug logging utility (disabled for production)
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const log = {
-  info: (..._args: unknown[]) => {},
-  success: (..._args: unknown[]) => {},
-  warn: (..._args: unknown[]) => {},
-  error: (..._args: unknown[]) => {},
-  perf: (..._args: unknown[]) => {},
+  info: (...args: unknown[]) => {},
+  success: (...args: unknown[]) => {},
+  warn: (...args: unknown[]) => {},
+  error: (...args: unknown[]) => {},
+  perf: (...args: unknown[]) => {},
 }
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 // Periodic noise function - EXACT from original
 const periodicNoiseFunction = `
