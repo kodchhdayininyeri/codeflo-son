@@ -95,8 +95,8 @@ export default function ContactNewsletter() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="w-full py-3 px-6 bg-black text-white rounded-full hover:opacity-90 transition-all font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ boxShadow: 'inset 0 0 54px 0px #008cf1' }}
+                  className="w-full py-3 px-6 text-white rounded-full hover:opacity-90 transition-all font-medium text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ backgroundColor: '#008cf1' }}
                 >
                   {status === 'loading' ? 'Sending...' : 'Send'}
                 </button>
