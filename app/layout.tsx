@@ -69,12 +69,6 @@ export default function RootLayout({
             z-index: 999999 !important;
           }
 
-          /* Fix: Chat container viewport overflow - Safari uyumlu */
-          #info_bot_widget_main {
-            max-height: calc(100vh - 100px) !important;
-            overflow-y: auto !important;
-          }
-
           @keyframes fadeIn {
             to { opacity: 1; }
           }
