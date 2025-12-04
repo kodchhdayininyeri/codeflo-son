@@ -70,13 +70,11 @@ export default function RootLayout({
           }
 
           /* Fix: Widget viewport overflow - Safari uyumlu */
-          #info_bot_widget_main {
-            padding-bottom: 10px !important;
-          }
           @media screen and (max-height: 700px) {
             #info_bot_widget_main {
               height: auto !important;
               max-height: 90vh !important;
+              padding-bottom: 0 !important;
             }
             #info_bot_widget_main .custom-scrollbar {
               max-height: 50vh !important;
