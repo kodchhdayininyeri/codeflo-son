@@ -71,9 +71,7 @@ export default function RootLayout({
 
           /* Fix: Chat container viewport overflow - Safari uyumlu */
           #info_bot_widget_main {
-            max-height: calc(100vh - 120px) !important;
-            top: 60px !important;
-            bottom: auto !important;
+            max-height: calc(100vh - 100px) !important;
             overflow-y: auto !important;
           }
 
