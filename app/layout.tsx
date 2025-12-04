@@ -70,9 +70,7 @@ export default function RootLayout({
           }
 
           /* Fix: Chat container viewport overflow - Safari uyumlu */
-          #quikquery_widget_container .custom-scrollbar[style*="max-height: 35rem"],
-          #quikquery_widget_container .custom-scrollbar[style*="min-height: 29rem"] {
-            max-height: 35rem !important;
+          #quikquery_widget_container .custom-scrollbar {
             max-height: calc(100vh - 200px) !important;
             min-height: auto !important;
           }
