@@ -69,6 +69,18 @@ export default function RootLayout({
             z-index: 999999 !important;
           }
 
+          /* Fix: Widget viewport overflow - Safari uyumlu */
+          @media screen and (max-height: 700px) {
+            #info_bot_widget_main {
+              height: auto !important;
+              max-height: 90vh !important;
+            }
+            #info_bot_widget_main .custom-scrollbar {
+              max-height: 50vh !important;
+              min-height: 30vh !important;
+            }
+          }
+
           @keyframes fadeIn {
             to { opacity: 1; }
           }
