@@ -68,6 +68,15 @@ export default function RootLayout({
           #quikquery_root {
             z-index: 999999 !important;
           }
+
+          /* Fix: Chat container viewport overflow - Safari uyumlu */
+          #quikquery_widget_container .custom-scrollbar[style*="max-height: 35rem"],
+          #quikquery_widget_container .custom-scrollbar[style*="min-height: 29rem"] {
+            max-height: 35rem !important;
+            max-height: calc(100vh - 200px) !important;
+            min-height: auto !important;
+          }
+
           @keyframes fadeIn {
             to { opacity: 1; }
           }
