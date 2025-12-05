@@ -77,8 +77,9 @@ export default function RootLayout({
               max-height: 90vh !important;
             }
             #info_bot_widget_main .custom-scrollbar {
-              max-height: 50vh !important;
+              max-height: 70vh !important;
               min-height: auto !important;
+              overflow-y: auto !important;
             }
           }
 
