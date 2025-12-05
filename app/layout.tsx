@@ -69,29 +69,19 @@ export default function RootLayout({
             z-index: 999999 !important;
           }
 
-          /* Fix: Widget viewport - Safari uyumlu */
-          #info_bot_widget_main {
-            max-height: 80vh !important;
-            height: auto !important;
-            min-height: 350px !important;
-            padding-bottom: 0 !important;
-          }
-
-          .custom-scrollbar {
-            max-height: 55vh !important;
-            min-height: 200px !important;
-            overflow-y: auto !important;
-            -webkit-overflow-scrolling: touch !important;
-          }
-
-          @media screen and (max-height: 700px) {
+          /* Fix: Widget viewport - sadece kucuk ekranlar icin */
+          @media screen and (max-height: 750px) {
             #info_bot_widget_main {
-              max-height: 75vh !important;
+              max-height: 80vh !important;
+              height: auto !important;
               min-height: 300px !important;
+              padding-bottom: 0 !important;
             }
             .custom-scrollbar {
-              max-height: 50vh !important;
+              max-height: 55vh !important;
               min-height: 150px !important;
+              overflow-y: auto !important;
+              -webkit-overflow-scrolling: touch !important;
             }
           }
 
